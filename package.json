@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deepclean": "rm -rf node_modules dist .cache .tmp && find . -name '*.tsbuildinfo' -delete",
+    "clean": "rm -rf dist .cache .tmp && find . -name '*.tsbuildinfo' -delete && rm -rf .eslintcache"
   },
   "dependencies": {
     "react": "^19.1.0",

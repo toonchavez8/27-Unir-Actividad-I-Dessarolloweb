@@ -1,0 +1,13 @@
+.sidenav {
+  background-color: rgb(49, 49, 49);
+  max-height: 100vh;
+  height: 100%;
+  width: 10rem; /* Adjust width as needed */
+  color: white;
+}
+.sidenav a {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  display: block;
+}
