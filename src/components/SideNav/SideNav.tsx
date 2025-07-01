@@ -1,3 +1,5 @@
+import Logo from "@/components/atomic/Logo";
+import { siteRoutes } from "@/Routes/siteRoutes";
 import "./_sideNav.css";
 interface SideNavProps {
   isOpen?: boolean;
@@ -5,42 +7,39 @@ interface SideNavProps {
 }
 
 const SideNav: React.FC<SideNavProps> = ({ isOpen = false, onClose }) => {
+  // Filter routes that belong on sidebar
+  const sidebarRoutes = siteRoutes.filter((route) => route.belongsOnSidebar);
+
   return (
     <nav className={`sidenav ${isOpen ? "sidenav--open" : ""} `}>
-      <div className="sidenav__header">
-        <h2 className="sidenav__title">Menu</h2>
+      <div className="sidenav__header debug">
+        <Logo />
         {onClose && (
           <button
-            className="sidenav__close-btn"
+            className="sidenav__close-btn debug"
             onClick={onClose}
             aria-label="Close navigation"
           >
-            ×
+            x
           </button>
         )}
       </div>
 
       <ul className="sidenav__list">
-        <li className="sidenav__item">
-          <a href="/" className="sidenav__link">
-            Dashboard
-          </a>
-        </li>
-        <li className="sidenav__item">
-          <a href="/" className="sidenav__link">
-            Campaigns
-          </a>
-        </li>
-        <li className="sidenav__item">
-          <a href="/" className="sidenav__link">
-            Sessions
-          </a>
-        </li>
-        <li className="sidenav__item">
-          <a href="/" className="sidenav__link">
-            Contact
-          </a>
-        </li>
+        {sidebarRoutes.map((route) => {
+          const IconComponent = route.Icon;
+          return (
+            <li key={route.id} className="sidenav__item ">
+              <a href={route.path} className="sidenav__link">
+                {IconComponent && <IconComponent />}
+                <span className="sidenav__text">
+                  {route.path.slice(1).charAt(0).toUpperCase() +
+                    route.path.slice(2)}
+                </span>
+              </a>
+            </li>
+          );
+        })}
       </ul>
     </nav>
   );

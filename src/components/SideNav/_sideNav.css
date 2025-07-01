@@ -1,13 +1,73 @@
+@import url("@/css/_Variables.css");
+
 .sidenav {
-  background-color: rgb(49, 49, 49);
   max-height: 100vh;
   height: 100%;
-  width: 10rem; /* Adjust width as needed */
-  color: white;
+  width: 15rem; /* Adjust width as needed */
+  background-color: var(--black-color);
 }
 .sidenav a {
-  color: white;
   text-decoration: none;
   padding: 10px;
   display: block;
+}
+
+/* SideNav list styling */
+.sidenav__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sidenav__item {
+  border-bottom: 1px solid var(--gray-color, #555);
+}
+
+.sidenav__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--white-color, #fff);
+  text-decoration: none;
+  padding: 1rem;
+  transition: background-color 0.2s ease;
+}
+
+.sidenav__link:hover {
+  background-color: var(--gray-color, #555);
+}
+
+.sidenav__icon {
+  font-size: 1.2rem;
+  color: var(--white-color, #fff);
+  flex-shrink: 0;
+}
+
+.sidenav__text {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+/* Header styling */
+.sidenav__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid var(--gray-color, #555);
+}
+
+.sidenav__close-btn {
+  background: none;
+  border: none;
+  color: var(--white-color, #fff);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  line-height: 1;
+  transition: opacity 0.2s ease;
+}
+
+.sidenav__close-btn:hover {
+  opacity: 0.7;
 }

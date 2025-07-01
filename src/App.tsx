@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router";
 import Layout from "./components/Layout";
 import { siteRoutes } from "@/Routes/siteRoutes"; // Importing site routes
+import "@/css/Global.css";
 
 const App = () => {
   return (

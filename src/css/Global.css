@@ -1,3 +1,5 @@
+@import url("./_Variables.css");
+
 html,
 body {
   margin: 0;
@@ -7,7 +9,18 @@ body {
   max-height: 100dvh;
 }
 body {
-  background-color: rgb(219, 219, 219);
+  background-color: var(--white-color);
   display: grid;
   grid-template-columns: auto 1fr;
+  font-family: "Geist", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.debug {
+  border: 1px solid red;
+}
+
+.anim {
+  transition: all 0.2s ease-in-out;
 }
