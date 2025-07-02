@@ -24,23 +24,20 @@
 }
 
 .sidenav__link {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   color: var(--white-color, #fff);
   text-decoration: none;
   padding: 1rem;
   transition: background-color 0.2s ease;
 }
 
-.sidenav__link:hover {
-  background-color: var(--gray-color, #555);
+.sidenav__link:first-child {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.sidenav__icon {
-  font-size: 1.2rem;
-  color: var(--white-color, #fff);
-  flex-shrink: 0;
+.sidenav__link:hover {
+  background-color: var(--gray-color, #555);
 }
 
 .sidenav__text {
