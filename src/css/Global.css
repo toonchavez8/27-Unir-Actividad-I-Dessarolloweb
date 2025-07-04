@@ -18,11 +18,15 @@ body {
 }
 
 body {
-  background-color: var(--white-color);
+  background-color: var(--background-color);
   width: 100%;
   font-family: "Geist", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
+  color: var(--text-primary);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 main {
@@ -31,7 +35,7 @@ main {
   max-width: 100%;
   min-height: 100vh;
   padding: 1rem;
-  background-color: var(--background-color, #f8f9fa);
+  background-color: var(--background-color);
 }
 
 .debug {
@@ -54,8 +58,8 @@ main {
 }
 
 .bento-card {
-  background-color: var(--card-background, #f8f9fa);
-  border: 2px dashed var(--border-color, #e5e7eb);
+  background-color: var(--card-background);
+  border: 2px dashed var(--border-color);
   border-radius: 0.5rem;
   padding: 1.5rem;
   min-height: 200px;
@@ -68,21 +72,21 @@ main {
 }
 
 .bento-card:hover {
-  border-color: var(--border-hover, #d1d5db);
-  background-color: var(--card-hover, #f3f4f6);
+  border-color: var(--border-hover);
+  background-color: var(--card-hover);
 }
 
 .bento-card__title {
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--text-primary, #111827);
+  color: var(--text-primary);
   margin-bottom: 0.5rem;
   text-align: center;
 }
 
 .bento-card__subtitle {
   font-size: 0.875rem;
-  color: var(--text-muted, #6b7280);
+  color: var(--text-muted);
   text-align: center;
 }
 
@@ -103,11 +107,11 @@ main {
 .page-title {
   font-size: 2rem;
   font-weight: 700;
-  color: var(--text-primary, #111827);
+  color: var(--text-primary);
   margin-bottom: 0.5rem;
 }
 
 .page-description {
   font-size: 1rem;
-  color: var(--text-muted, #6b7280);
+  color: var(--text-muted);
 }

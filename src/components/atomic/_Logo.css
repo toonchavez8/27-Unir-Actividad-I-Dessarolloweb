@@ -1,4 +1,4 @@
-/* Logo Component - BEM Naming Convention */
+@import url("@/css/_Variables.css");
 .logo {
   display: flex;
   justify-content: center;
@@ -18,7 +18,7 @@
 
 .logo__text {
   font-weight: 700;
-  color: #2c2c2c; /* Matte black color */
+  color: var(--text-primary); /* Matte black color */
   line-height: 1.2;
   margin: 0;
   transition: opacity 0.3s ease !important;
@@ -111,11 +111,4 @@
 /* Hover Effects */
 .logo:hover {
   transform: scale(1.05);
-}
-
-/* Dark Mode Support */
-@media (prefers-color-scheme: dark) {
-  .logo__text {
-    color: #111c34;
-  }
 }

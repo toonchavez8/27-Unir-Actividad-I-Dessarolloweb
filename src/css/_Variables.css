@@ -1,6 +1,69 @@
 :root {
+  /* Brand Colors */
   --primary-color: #5045e5;
-  --secondary-color: #9233ea;
-  --white-color: #e9e9e9;
-  --black-color: #1a1a1a;
+  --secondary-color: #9832f8;
+  --white-color: #ffffff;
+  --black-color: #0e0e11;
+  --color-electric-violet-50: #faf4ff;
+  --color-electric-violet-100: #f3e6ff;
+  --color-electric-violet-200: #e9d2ff;
+  --color-electric-violet-300: #d7afff;
+  --color-electric-violet-400: #bf7bff;
+  --color-electric-violet-500: #a649ff;
+  --color-electric-violet-600: #9832f8;
+  --color-electric-violet-700: #7d15db;
+  --color-electric-violet-800: #6b17b2;
+  --color-electric-violet-900: #58148f;
+  --color-electric-violet-950: #3b006b;
+  --color-purple-heart-50: #eef2ff;
+  --color-purple-heart-100: #e0e7ff;
+  --color-purple-heart-200: #c7d1fe;
+  --color-purple-heart-300: #a5b3fc;
+  --color-purple-heart-400: #818bf8;
+  --color-purple-heart-500: #6364f1;
+  --color-purple-heart-600: #5045e5;
+  --color-purple-heart-700: #4538ca;
+  --color-purple-heart-800: #3830a3;
+  --color-purple-heart-900: #322e81;
+  --color-purple-heart-950: #1f1b4b;
+
+  /* Light Theme Variables */
+  --background-color: #ffffff;
+  --surface-color: #faf4ff;
+  --card-background: #ffffff;
+  --card-hover: #f3f4f6;
+  --text-primary: var(--black-color);
+  --text-secondary: #374151;
+  --text-muted: #6b7280;
+  --border-color: #d1d5db;
+  --border-hover: #d1d5db;
+  --accent-color: #f3f4f6;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+
+  /* Theme Toggle Button */
+  --theme-toggle-bg: #f3f4f6;
+  --theme-toggle-hover: #e5e7eb;
+  --theme-toggle-icon: #6b7280;
+  --theme-toggle-active: var(--primary-color);
+}
+
+/* Dark Theme Variables */
+[data-theme="dark"] {
+  --background-color: var(--black-color);
+  --surface-color: #1e293b;
+  --card-background: #1e293b;
+  --card-hover: #334155;
+  --text-primary: var(--white-color);
+  --text-secondary: #cbd5e1;
+  --text-muted: var(--color-electric-violet-100);
+  --border-color: var(--color-electric-violet-950);
+  --border-hover: #475569;
+  --accent-color: #334155;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+
+  /* Dark Theme Toggle Button */
+  --theme-toggle-bg: #334155;
+  --theme-toggle-hover: #475569;
+  --theme-toggle-icon: #94a3b8;
+  --theme-toggle-active: var(--secondary-color);
 }

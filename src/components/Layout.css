@@ -2,7 +2,8 @@
 .layout {
   display: flex;
   min-height: 100vh;
-  background-color: var(--background-color, #f8f9fa);
+  background-color: var(--background-color);
+  position: relative;
 }
 
 .layout__main {
@@ -10,18 +11,108 @@
   margin-left: 15rem; /* Default sidebar width */
   transition: margin-left 0.3s ease;
   padding: 1rem;
+  overflow-x: hidden;
 }
 
 .layout__main--expanded {
   margin-left: 4rem; /* Collapsed sidebar width */
 }
 
+/* Mobile Menu Button */
+.layout__mobile-menu-btn {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  width: 3rem;
+  height: 3rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  background-color: var(--background-color);
+  color: var(--text-primary);
+  display: none; /* Hidden by default, shown on mobile */
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  cursor: pointer;
+  z-index: 1001;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.layout__mobile-menu-btn:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.layout__mobile-menu-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.layout__mobile-menu-btn:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Mobile Styles */
 @media (max-width: 768px) {
   .layout__main {
-    margin-left: 0;
+    margin-left: 0; /* No margin on mobile - sidebar overlays */
+    width: 100%;
+    padding: 1rem; /* Consistent padding */
+    min-height: 100vh;
   }
 
   .layout__main--expanded {
-    margin-left: 0;
+    margin-left: 0; /* Always no margin on mobile */
+  }
+
+  /* Mobile menu button - only visible on mobile when sidebar is closed */
+  .layout__mobile-menu-btn {
+    display: flex;
+  }
+
+  /* Prevent scrolling when sidebar is open on mobile */
+  .layout:has(.sidenav--open) {
+    overflow: hidden;
+  }
+
+  /* Add overlay when sidebar is open on mobile */
+  .layout__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.3s ease,
+      visibility 0.3s ease;
+    cursor: pointer;
+    border: none;
+    margin: 0;
+    padding: 0;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+  }
+
+  .layout__overlay--visible {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+/* Desktop Styles */
+@media (min-width: 769px) {
+  /* Hide mobile menu button on desktop */
+  .layout__mobile-menu-btn {
+    display: none;
   }
 }
