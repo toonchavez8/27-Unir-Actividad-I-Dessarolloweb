@@ -1,0 +1,27 @@
+/* Layout Component */
+.layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--background-color, #f8f9fa);
+}
+
+.layout__main {
+  flex: 1;
+  margin-left: 15rem; /* Default sidebar width */
+  transition: margin-left 0.3s ease;
+  padding: 1rem;
+}
+
+.layout__main--expanded {
+  margin-left: 4rem; /* Collapsed sidebar width */
+}
+
+@media (max-width: 768px) {
+  .layout__main {
+    margin-left: 0;
+  }
+
+  .layout__main--expanded {
+    margin-left: 0;
+  }
+}

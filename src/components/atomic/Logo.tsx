@@ -5,19 +5,26 @@ interface LogoProps {
   size?: "small" | "medium" | "large";
   variant?: "horizontal" | "vertical";
   className?: string;
+  isCollapsed?: boolean; // Optional prop for collapsed state
 }
 
 const Logo: React.FC<LogoProps> = ({
-  size = "large",
+  size = "medium",
   variant = "horizontal",
   className = "anim",
+  isCollapsed = false,
 }) => {
-  const logoClasses = `logo ${className} logo--${size} logo--${variant}`.trim();
+  // When collapsed, always use small size and only show icon
+  const logoSize = isCollapsed ? "small" : size;
+  const logoClasses =
+    `logo ${className} logo--${logoSize} logo--${variant}`.trim();
 
   return (
     <figure className={logoClasses}>
       <img src="/dice_Logo.svg" alt="DM Journal Logo" className="logo__image" />
-      <figcaption className="logo__text">DM Journal</figcaption>
+      {!isCollapsed && (
+        <figcaption className="logo__text">DM Journal</figcaption>
+      )}
     </figure>
   );
 };

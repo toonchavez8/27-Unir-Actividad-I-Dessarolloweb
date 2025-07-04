@@ -7,14 +7,31 @@ body {
   height: 100%;
   max-height: 100vh;
   max-height: 100dvh;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
 body {
   background-color: var(--white-color);
-  display: grid;
-  grid-template-columns: auto 1fr;
+  width: 100%;
   font-family: "Geist", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  min-height: 100vh;
+  padding: 1rem;
+  background-color: var(--background-color, #f8f9fa);
 }
 
 .debug {
@@ -23,4 +40,74 @@ body {
 
 .anim {
   transition: all 0.2s ease-in-out;
+}
+
+/* Bento Grid Layout */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.bento-card {
+  background-color: var(--card-background, #f8f9fa);
+  border: 2px dashed var(--border-color, #e5e7eb);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-in-out;
+  box-sizing: border-box;
+}
+
+.bento-card:hover {
+  border-color: var(--border-hover, #d1d5db);
+  background-color: var(--card-hover, #f3f4f6);
+}
+
+.bento-card__title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary, #111827);
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.bento-card__subtitle {
+  font-size: 0.875rem;
+  color: var(--text-muted, #6b7280);
+  text-align: center;
+}
+
+/* Page Layout */
+.page-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+}
+
+.page-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.page-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary, #111827);
+  margin-bottom: 0.5rem;
+}
+
+.page-description {
+  font-size: 1rem;
+  color: var(--text-muted, #6b7280);
 }

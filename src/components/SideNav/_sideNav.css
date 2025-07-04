@@ -1,70 +1,249 @@
-@import url("@/css/_Variables.css");
+@import url("../../css/_Variables.css");
 
+/* Shadcn-style Sidebar */
 .sidenav {
-  max-height: 100vh;
-  height: 100%;
-  width: 15rem; /* Adjust width as needed */
-  background-color: var(--black-color);
-}
-.sidenav a {
-  text-decoration: none;
-  padding: 10px;
-  display: block;
-}
-
-/* SideNav list styling */
-.sidenav__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.sidenav__item {
-  border-bottom: 1px solid var(--gray-color, #555);
-}
-
-.sidenav__link {
-  color: var(--white-color, #fff);
-  text-decoration: none;
-  padding: 1rem;
-  transition: background-color 0.2s ease;
-}
-
-.sidenav__link:first-child {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 15rem;
+  background-color: var(--white-color, #ffffff);
+  border-right: 1px solid var(--border-color, #e5e7eb);
   display: flex;
+  flex-direction: column;
+  transition: width 0.3s ease;
+  z-index: 1000;
+}
+
+.sidenav--collapsed {
+  width: 4rem;
+}
+
+.sidenav--open {
+  transform: translateX(0);
+}
+
+/* Header */
+.sidenav__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  border-bottom: 1px solid var(--border-color, #e5e7eb);
+  min-height: 60px;
+}
+
+.sidenav__logo {
+  display: flex;
+  align-items: center;
+  transition: opacity 0.3s ease;
+}
+
+/* Don't hide logo when collapsed, let Logo component handle its own display */
+.sidenav--collapsed .sidenav__header {
+  justify-content: center;
+  padding: 1rem 0.5rem;
+}
+
+.sidenav__controls {
+  position: absolute;
+  right: -1rem;
   align-items: center;
   gap: 0.5rem;
 }
 
-.sidenav__link:hover {
-  background-color: var(--gray-color, #555);
-}
-
-.sidenav__text {
-  font-size: 0.95rem;
-  font-weight: 500;
-}
-
-/* Header styling */
-.sidenav__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  border-bottom: 1px solid var(--gray-color, #555);
-}
-
+.sidenav__toggle-btn,
 .sidenav__close-btn {
-  background: none;
-  border: none;
-  color: var(--white-color, #fff);
-  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid transparent;
+  border-radius: 0.375rem;
+  background-color: transparent;
+  color: var(--text-muted, #6b7280);
   cursor: pointer;
-  padding: 0.25rem;
-  line-height: 1;
-  transition: opacity 0.2s ease;
+  transition: all 0.2s ease;
 }
 
+.sidenav__toggle-btn:hover,
 .sidenav__close-btn:hover {
-  opacity: 0.7;
+  /* border gradient of primary to secondary */
+  border: 1px solid var(--primary-color, #f3f4f6);
+  color: var(--primary-color, #111827);
+}
+
+.sidenav__toggle-btn:active,
+.sidenav__close-btn:active {
+  transform: scale(0.95);
+}
+
+/* Collapsed state toggle button positioning */
+.sidenav__toggle-btn--collapsed {
+  position: absolute;
+  top: 1rem;
+  right: 0.5rem;
+}
+
+/* Content */
+.sidenav__content {
+  flex: 1;
+  padding: 1rem 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.sidenav__list {
+  list-style: none;
+  margin: 0;
+  padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.sidenav__item {
+  width: 100%;
+}
+
+.sidenav__link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  color: var(--text-muted, #6b7280);
+  text-decoration: none;
+  border-radius: 0.375rem;
+  transition: all 0.2s ease;
+  font-size: 0.875rem;
+  font-weight: 500;
+  min-height: 2.5rem;
+  position: relative;
+}
+
+.sidenav__link:hover {
+  background-color: var(--accent-color, #f3f4f6);
+  color: var(--text-primary, #111827);
+}
+
+.sidenav__link:active {
+  transform: scale(0.98);
+}
+
+/* Active state */
+.sidenav__link[aria-current="page"] {
+  /* Create a larger gradient that we can move around */
+  background-image: linear-gradient(
+    45deg,
+    var(--primary-color, #2563eb),
+    var(--secondary-color, #9333ea),
+    var(--primary-color, #2563eb)
+  );
+  background-size: 200% 200%;
+  background-position: bottom left;
+  color: var(--white-color, #ffffff);
+  transition: all 0.3s ease;
+}
+
+.sidenav__link[aria-current="page"]:hover {
+  /* Move the gradient to top right on hover */
+  background-position: top right;
+}
+
+/* Icon wrapper */
+.sidenav__icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+}
+
+.sidenav__icon-wrapper svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Text */
+.sidenav__text {
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidenav--collapsed .sidenav__text {
+  opacity: 0;
+  width: 0;
+}
+
+/* Collapsed state adjustments */
+.sidenav--collapsed .sidenav__link {
+  justify-content: center;
+  padding: 0.5rem;
+  position: relative;
+}
+
+.sidenav--collapsed .sidenav__controls {
+  justify-content: center;
+}
+
+/* Tooltip for collapsed state */
+.sidenav--collapsed .sidenav__link::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--tooltip-bg, #1f2937);
+  color: var(--tooltip-text, #ffffff);
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 1000;
+  margin-left: 0.5rem;
+}
+
+.sidenav--collapsed .sidenav__link:hover::after {
+  opacity: 1;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .sidenav {
+    transform: translateX(-100%);
+    width: 15rem;
+  }
+
+  .sidenav--open {
+    transform: translateX(0);
+  }
+
+  .sidenav--collapsed {
+    width: 15rem;
+  }
+}
+
+/* Scrollbar styling */
+.sidenav__content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.sidenav__content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidenav__content::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb, #d1d5db);
+  border-radius: 2px;
+}
+
+.sidenav__content::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover, #9ca3af);
 }
