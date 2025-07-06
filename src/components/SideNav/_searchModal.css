@@ -9,11 +9,11 @@
   border: none;
   cursor: pointer;
   font-size: 1.5rem;
-  color: var(--color-text-secondary, #888);
+  color: var(--text-secondary,);
   transition: color 0.2s;
 }
 .sidenav__search-icon-btn:hover {
-  color: var(--color-primary, #4f46e5);
+  color: var(--text-primary);
 }
 .sidenav__footer-row {
   display: flex;
@@ -24,15 +24,15 @@
   flex: 1;
   padding: 0.4rem 0.8rem;
   border-radius: 0.5rem;
-  border: 1px solid #e5e7eb;
-  background: var(--color-bg, #fff);
+  border: 1px solid var(--border-color);
+  background: var(--background-color);
   font-size: 1rem;
   outline: none;
   transition: border 0.2s;
   min-width: 120px;
 }
 .sidenav__footer-searchbar:focus {
-  border: 1.5px solid var(--color-primary, #4f46e5);
+  border: 1.5px solid var(--color-primary);
 }
 .search-modal__backdrop {
   position: fixed;
@@ -54,10 +54,12 @@
   }
 }
 .search-modal__container {
-  background: var(--color-bg, #fff);
+  background: var(--background-color);
   border-radius: 1rem;
+  border: 1.5px solid var(--border-color);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
   padding: 2rem 1.5rem 1.5rem 1.5rem;
+  outline: none;
   min-width: 320px;
   max-width: 90vw;
   width: 400px;
@@ -80,15 +82,14 @@
   width: 100%;
   padding: 0.7rem 1rem;
   border-radius: 0.7rem;
-  border: 1.5px solid #e5e7eb;
+  color: var(--text-primary);
+  border: 1.5px solid var(--border-color);
   font-size: 1.1rem;
-  outline: none;
-  background: var(--color-bg, #fff);
+  background: var(--background-color);
   transition: border 0.2s;
+  outline: none;
 }
-.search-modal__input:focus {
-  border: 1.5px solid var(--color-primary, #4f46e5);
-}
+
 .search-modal__results {
   min-height: 60px;
   display: flex;
@@ -96,7 +97,7 @@
   justify-content: center;
 }
 .search-modal__placeholder {
-  color: #888;
+  color: var(--text-primary);
   font-size: 1rem;
   text-align: center;
 }
