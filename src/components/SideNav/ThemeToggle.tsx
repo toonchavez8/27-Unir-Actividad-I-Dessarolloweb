@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { MdLightMode, MdDarkMode } from "react-icons/md";
 import "./ThemeToggle.css";
-
-interface ThemeToggleProps {
-  isCollapsed?: boolean;
-}
+import type { ThemeToggleProps } from "@/types/sidenavProps";
 
 const ThemeToggle: React.FC<ThemeToggleProps> = ({ isCollapsed = false }) => {
   const [isDark, setIsDark] = useState(() => {

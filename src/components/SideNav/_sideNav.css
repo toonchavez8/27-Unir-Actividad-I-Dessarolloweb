@@ -147,8 +147,8 @@
 
 .sidenav__link {
   display: flex;
+  justify-content: flex-start;
   align-items: center;
-  gap: 0.75rem;
   padding: 0.5rem 0.75rem;
   color: var(--text-muted);
   text-decoration: none;
@@ -158,6 +158,43 @@
   font-weight: 500;
   min-height: 2.5rem;
   position: relative;
+  gap: 0.75rem;
+}
+
+/* Collapsed state */
+.sidenav__link--collapsed {
+  position: relative;
+  gap: 0;
+}
+
+/* Tooltip for collapsed state */
+
+.sidenav__link--collapsed::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--tooltip-bg, #1f2937);
+  color: var(--tooltip-text, #ffffff);
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 2000;
+  margin-left: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.sidenav__link--collapsed:hover::after {
+  opacity: 1;
+}
+
+.sidenav__link--expanded {
+  gap: 0.75rem;
 }
 
 .sidenav__link:hover {
@@ -227,39 +264,11 @@
   justify-content: center;
 }
 
-/* Tooltip for collapsed state */
-.sidenav--collapsed .sidenav__link::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  left: 100%;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: var(--tooltip-bg, #006aff);
-  color: var(--tooltip-text, #ffffff);
-  padding: 0.5rem 0.75rem;
-  border-radius: 0.375rem;
-  font-size: 0.75rem;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s ease;
-  z-index: 1000;
-  margin-left: 0.5rem;
-}
-
-.sidenav--collapsed .sidenav__link:hover::after {
-  opacity: 1;
-}
-
 /* Footer */
 .sidenav__footer {
   padding: 1rem 0.5rem;
   border-top: 1px solid var(--border-color, #e5e7eb);
   margin-top: auto;
-}
-
-.sidenav--collapsed .sidenav__footer {
-  padding: 1rem 0.25rem;
 }
 
 /* Responsive design */

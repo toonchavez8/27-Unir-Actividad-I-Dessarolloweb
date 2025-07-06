@@ -1,16 +1,12 @@
+import type { NavLinkProps } from "@/types/sidenavProps";
 import { useLocation, Link } from "react-router";
-
-interface NavLinkProps {
-  to: string;
-  children: React.ReactNode;
-  className?: string;
-  "data-tooltip"?: string;
-}
+import "./_sideNav.css";
 
 const NavLink: React.FC<NavLinkProps> = ({
   to,
   children,
   className,
+  isCollapsed,
   ...props
 }) => {
   const location = useLocation();
@@ -19,7 +15,8 @@ const NavLink: React.FC<NavLinkProps> = ({
   return (
     <Link
       to={to}
-      className={className}
+      className={`${className} ${isCollapsed ? "sidenav__link--collapsed" : "sidenav__link--expanded"}`}
+      title={`go to ${to.charAt(0).toUpperCase() + to.slice(1)}`}
       aria-current={isActive ? "page" : undefined}
       {...props}
     >

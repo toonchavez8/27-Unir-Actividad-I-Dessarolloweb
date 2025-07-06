@@ -12,15 +12,7 @@ import {
   TbX,
   TbSearch,
 } from "react-icons/tb";
-
-interface SideNavProps {
-  isOpen?: boolean;
-  isCollapsed?: boolean;
-  onClose?: () => void;
-  onToggle?: () => void;
-  isMobile?: boolean;
-  onSearchOpen?: () => void;
-}
+import type { SideNavProps } from "@/types/sidenavProps";
 
 const SideNav: React.FC<SideNavProps> = ({
   isOpen = false,
@@ -104,8 +96,13 @@ const SideNav: React.FC<SideNavProps> = ({
               <li key={route.id} className="sidenav__item">
                 <NavLink
                   to={route.path}
-                  className="sidenav__link"
+                  className={`sidenav__link ${
+                    isCollapsed
+                      ? "sidenav__link--collapsed"
+                      : "sidenav__link--expanded"
+                  }`}
                   data-tooltip={routeName}
+                  aria-label={routeName}
                 >
                   <div className="sidenav__icon-wrapper">
                     {IconComponent && <IconComponent />}
@@ -120,17 +117,17 @@ const SideNav: React.FC<SideNavProps> = ({
 
       {/* Toggle button positioned above footer */}
 
+      {isCollapsed && (
+        <button
+          className="sidenav__search-icon-btn"
+          aria-label="Open search"
+          onClick={onSearchOpen}
+        >
+          <TbSearch />
+        </button>
+      )}
       {onToggle && (
         <div className="sidenav__toggle-section">
-          {isCollapsed && (
-            <button
-              className="sidenav__search-icon-btn"
-              aria-label="Open search"
-              onClick={onSearchOpen}
-            >
-              <TbSearch />
-            </button>
-          )}
           {!isCollapsed && (
             <input
               type="text"
