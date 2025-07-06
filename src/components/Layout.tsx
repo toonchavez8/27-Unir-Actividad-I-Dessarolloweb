@@ -1,34 +1,39 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import SideNav from "./SideNav/SideNav";
 import { Outlet } from "react-router";
 import { TbMenu2 } from "react-icons/tb";
 import "./Layout.css";
+import SearchModal from "./SideNav/SearchModal";
 
 function Layout() {
   const [isOpen, setIsOpen] = useState(false); // Start closed on mobile
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
-  // Check if device is mobile
+  //Revisamos si estamos en mobile y ajustamos el estado del sidebar
   useEffect(() => {
     const checkMobile = () => {
       const mobile = window.innerWidth <= 768;
       setIsMobile(mobile);
+      // si estamos en mobile, el sidebar debe estar cerrado por defecto
       if (mobile) {
-        // On mobile, sidebar should be closed by default
         setIsCollapsed(false);
       }
+      // si no estamos en mobile y el sidebar no está abierto ni colapsado, lo abrimos
       if (!mobile && !isOpen && !isCollapsed) {
         setIsOpen(true);
       }
     };
 
+    // revisamos el tamaño de la ventana al cargar y al redimensionar la ventana
     checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, [isOpen, isCollapsed]);
 
-  // Handle escape key to close sidebar on mobile
+  // Cerramos el sidebar al presionar Escape en mobile
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape" && isMobile && isOpen) {
@@ -36,9 +41,41 @@ function Layout() {
       }
     };
 
+    // Escucha el evento de teclado para cerrar el sidebar en mobile
     document.addEventListener("keydown", handleEscape);
     return () => document.removeEventListener("keydown", handleEscape);
   }, [isMobile, isOpen]);
+
+  // Agregamos un manejador de teclas para Ctrl+K para abrir/cerrar el modal de búsqueda
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setIsSearchOpen((open) => !open);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  // Foco en el input de búsqueda cuando se abre el modal
+  useEffect(() => {
+    if (isSearchOpen && searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  }, [isSearchOpen]);
+
+  // Cerrar el modal de búsqueda con Escape
+  useEffect(() => {
+    if (!isSearchOpen) return;
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsSearchOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, [isSearchOpen]);
 
   const handleClose = () => {
     setIsOpen(false);
@@ -46,10 +83,10 @@ function Layout() {
 
   const handleToggle = () => {
     if (isMobile) {
-      // On mobile, toggle between open/closed (no collapsed state)
+      // En mobile si el sidebar está abierto, lo cerramos
       setIsOpen(!isOpen);
     } else {
-      // On desktop, toggle between expanded/collapsed
+      // en desktop, alternamos entre expandido/colapsado
       setIsCollapsed(!isCollapsed);
     }
   };
@@ -62,6 +99,12 @@ function Layout() {
 
   return (
     <div className="layout">
+      {/* Search Modal overlays everything */}
+      <SearchModal
+        isOpen={isSearchOpen}
+        onClose={() => setIsSearchOpen(false)}
+        inputRef={searchInputRef}
+      />
       {/* Mobile Menu Button - only visible when sidebar is closed on mobile */}
       {isMobile && !isOpen && (
         <button
@@ -88,6 +131,7 @@ function Layout() {
         onClose={handleClose}
         onToggle={handleToggle}
         isMobile={isMobile}
+        onSearchOpen={() => setIsSearchOpen(true)}
       />
 
       <main

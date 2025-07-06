@@ -69,16 +69,16 @@ export const siteRoutes: SiteRoute[] = [
   },
   {
     id: 8,
-    path: "/settings",
-    Element: Settings,
-    belongsOnSidebar: true,
-    Icon: FaGear,
-  },
-  {
-    id: 9,
     path: "/items",
     Element: Items,
     belongsOnSidebar: true,
     Icon: GiSwordSmithing,
+  },
+  {
+    id: 9,
+    path: "/settings",
+    Element: Settings,
+    belongsOnSidebar: true,
+    Icon: FaGear,
   },
 ];

@@ -2,6 +2,7 @@ import { useState } from "react";
 import Logo from "@/components/atomic/Logo";
 import { siteRoutes } from "@/Routes/siteRoutes";
 import "./_sideNav.css";
+import "./_searchModal.css";
 import { Link } from "react-router";
 import NavLink from "./NavLink";
 import ThemeToggle from "./ThemeToggle";
@@ -9,13 +10,16 @@ import {
   TbLayoutSidebarLeftCollapse,
   TbLayoutSidebarLeftExpand,
   TbX,
+  TbSearch,
 } from "react-icons/tb";
+
 interface SideNavProps {
   isOpen?: boolean;
   isCollapsed?: boolean;
   onClose?: () => void;
   onToggle?: () => void;
   isMobile?: boolean;
+  onSearchOpen?: () => void;
 }
 
 const SideNav: React.FC<SideNavProps> = ({
@@ -24,6 +28,7 @@ const SideNav: React.FC<SideNavProps> = ({
   onToggle,
   onClose,
   isMobile = false,
+  onSearchOpen,
 }) => {
   // Filter routes that belong on sidebar
   const sidebarRoutes = siteRoutes.filter((route) => route.belongsOnSidebar);
@@ -60,7 +65,9 @@ const SideNav: React.FC<SideNavProps> = ({
 
   return (
     <nav
-      className={`sidenav ${isOpen ? "sidenav--open" : ""} ${isCollapsed ? "sidenav--collapsed" : ""}`}
+      className={`sidenav ${isOpen ? "sidenav--open" : ""} ${
+        isCollapsed ? "sidenav--collapsed" : ""
+      }`}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
@@ -112,8 +119,27 @@ const SideNav: React.FC<SideNavProps> = ({
       </div>
 
       {/* Toggle button positioned above footer */}
+
       {onToggle && (
         <div className="sidenav__toggle-section">
+          {isCollapsed && (
+            <button
+              className="sidenav__search-icon-btn"
+              aria-label="Open search"
+              onClick={onSearchOpen}
+            >
+              <TbSearch />
+            </button>
+          )}
+          {!isCollapsed && (
+            <input
+              type="text"
+              className="sidenav__footer-searchbar"
+              placeholder="Search... (Ctrl+K)"
+              onFocus={onSearchOpen}
+              readOnly
+            />
+          )}
           <button
             className="sidenav__toggle-btn"
             onClick={onToggle}
@@ -127,9 +153,11 @@ const SideNav: React.FC<SideNavProps> = ({
           </button>
         </div>
       )}
-
       <div className="sidenav__footer">
-        <ThemeToggle isCollapsed={isCollapsed} />
+        {/* Search bar next to theme toggle when expanded */}
+        <div className="sidenav__footer-row">
+          <ThemeToggle isCollapsed={isCollapsed} />
+        </div>
       </div>
     </nav>
   );
