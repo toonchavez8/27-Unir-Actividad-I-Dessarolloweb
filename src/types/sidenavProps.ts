@@ -16,7 +16,6 @@ export interface NavLinkProps {
   className?: string;
   "data-tooltip"?: string;
   tittle?: string;
-  isCollapsed?: boolean;
 }
 
 export interface SideNavProps {

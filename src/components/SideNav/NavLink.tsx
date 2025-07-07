@@ -6,7 +6,6 @@ const NavLink: React.FC<NavLinkProps> = ({
   to,
   children,
   className,
-  isCollapsed,
   ...props
 }) => {
   const location = useLocation();
@@ -15,7 +14,7 @@ const NavLink: React.FC<NavLinkProps> = ({
   return (
     <Link
       to={to}
-      className={`${className} ${isCollapsed ? "sidenav__link--collapsed" : "sidenav__link--expanded"}`}
+      className={className}
       title={`go to ${to.charAt(0).toUpperCase() + to.slice(1)}`}
       aria-current={isActive ? "page" : undefined}
       {...props}

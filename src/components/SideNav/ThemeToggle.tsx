@@ -5,18 +5,18 @@ import type { ThemeToggleProps } from "@/types/sidenavProps";
 
 const ThemeToggle: React.FC<ThemeToggleProps> = ({ isCollapsed = false }) => {
   const [isDark, setIsDark] = useState(() => {
-    // Check for saved theme preference or default to light mode
+    // Check for saved theme preference or default to dark mode (since that's our root theme now)
     const savedTheme = localStorage.getItem("theme");
-    return savedTheme === "dark";
+    return savedTheme !== "light"; // Default to dark mode
   });
 
   useEffect(() => {
     // Apply theme to document
     if (isDark) {
-      document.documentElement.setAttribute("data-theme", "dark");
+      document.documentElement.removeAttribute("data-theme"); // Dark is default (root)
       localStorage.setItem("theme", "dark");
     } else {
-      document.documentElement.removeAttribute("data-theme");
+      document.documentElement.setAttribute("data-theme", "light");
       localStorage.setItem("theme", "light");
     }
   }, [isDark]);

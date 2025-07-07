@@ -18,7 +18,7 @@
 
 .logo__text {
   font-weight: 700;
-  color: var(--text-primary); /* Matte black color */
+  color: var(--text-primary);
   line-height: 1.2;
   margin: 0;
   transition: opacity 0.3s ease !important;
