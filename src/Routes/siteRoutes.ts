@@ -5,6 +5,7 @@ import Locations from "@/pages/Locations";
 import NotFound from "@/pages/NotFound";
 import Npcs from "@/pages/Npcs";
 import Sessiones from "@/pages/Sessiones";
+import SessionDetail from "@/pages/SessionDetail";
 import Settings from "@/pages/Settings";
 import Shops from "@/pages/Shops";
 import type { ComponentType } from "react";
@@ -76,6 +77,11 @@ export const siteRoutes: SiteRoute[] = [
   },
   {
     id: 9,
+    path: "/campaigns/:campaignId/sessions/:sessionId",
+    Element: SessionDetail,
+  },
+  {
+    id: 10,
     path: "/settings",
     Element: Settings,
     belongsOnSidebar: true,

@@ -1,8 +1,13 @@
-import { useNavigate } from "react-router";
+import { useCampaigns } from "@/hooks/useCampaigns";
+import { UpcomingSessions } from "@/components/UpcomingSessions";
+import { DashboardStats } from "@/components/Dashboard/DashboardStats";
 
 
 function LandingPage() {
-const navigate = useNavigate();
+const {sessions} = useCampaigns();
+
+const upcomingSessions = sessions.filter(session => session.status === "planned").sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()).slice(0, 3);
+
 
 
 
@@ -14,22 +19,12 @@ const navigate = useNavigate();
           Your ultimate companion for managing D&D campaigns
         </p>
       </div>
-      <div className="bento-grid">
-        <div className="bento-card">
-          <h2 className="bento-card__title">Getting Started</h2>
-          <p className="bento-card__subtitle">
-            Quick setup guide for new users
-          </p>
-        </div>
-        <div className="bento-card">
-          <h2 className="bento-card__title">Recent Activity</h2>
-          <p className="bento-card__subtitle">Latest updates and changes</p>
-        </div>
-        <div className="bento-card">
-          <h2 className="bento-card__title">Quick Actions</h2>
-          <p className="bento-card__subtitle">Common tasks and shortcuts</p>
-        </div>
-      </div>
+      
+      <section className="page-content">
+        <DashboardStats />
+        <UpcomingSessions sessions={upcomingSessions} />
+      </section>
+ 
     </div>
   );
 }

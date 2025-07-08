@@ -93,7 +93,7 @@ main {
 /* Page Layout */
 .page-container {
   width: 100%;
-  max-width: 1400px;
+  max-width: 80rem;
   margin: 0 auto;
   padding: 2rem 1rem;
   box-sizing: border-box;
@@ -114,4 +114,12 @@ main {
 .page-description {
   font-size: 1rem;
   color: var(--text-muted);
+}
+
+.page-content {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  max-width: 80rem;
+  gap: 1.3rem;
 }
