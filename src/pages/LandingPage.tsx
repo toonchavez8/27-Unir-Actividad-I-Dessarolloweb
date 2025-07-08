@@ -1,8 +1,15 @@
+import { useNavigate } from "react-router";
+
+
 function LandingPage() {
+const navigate = useNavigate();
+
+
+
   return (
     <div className="page-container">
       <div className="page-header">
-        <h1 className="page-title">Welcome to DM Journal</h1>
+         <h1 className="page-title">Campaign Dashboard</h1>
         <p className="page-description">
           Your ultimate companion for managing D&D campaigns
         </p>
