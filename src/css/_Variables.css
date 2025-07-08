@@ -90,7 +90,7 @@ body.light {
   --text-muted: oklch(0.4 0 340);
   --highlight: oklch(1 0 340);
   --border: oklch(0.6 0 340);
-  --border-muted: oklch(0.7 0 340);
+  --border-muted: oklch(85.142% 0.0001 271.152);
   --primary: oklch(0.4 0.1 340);
   --secondary: oklch(0.4 0.1 160);
   --danger: oklch(0.5 0.05 30);
