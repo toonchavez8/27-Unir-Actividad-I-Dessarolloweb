@@ -1,4 +1,5 @@
 import Campaigns from "@/pages/Campaigns";
+import CampaignDetail from "@/pages/CampaignDetail";
 import Items from "@/pages/Items";
 import LandingPage from "@/pages/LandingPage";
 import Locations from "@/pages/Locations";
@@ -42,46 +43,51 @@ export const siteRoutes: SiteRoute[] = [
   },
   {
     id: 4,
+    path: "/campaigns/:campaignId",
+    Element: CampaignDetail,
+  },
+  {
+    id: 5,
     path: "/sessions",
     Element: Sessiones,
     belongsOnSidebar: true,
     Icon: GiMagicPortal,
   },
   {
-    id: 5,
+    id: 6,
     path: "/npcs",
     Element: Npcs,
     belongsOnSidebar: true,
     Icon: MdPeopleAlt,
   },
   {
-    id: 6,
+    id: 7,
     path: "/shops",
     Element: Shops,
     belongsOnSidebar: true,
     Icon: FaShop,
   },
   {
-    id: 7,
+    id: 8,
     path: "/locations",
     Element: Locations,
     belongsOnSidebar: true,
     Icon: FaMapLocationDot,
   },
   {
-    id: 8,
+    id: 9,
     path: "/items",
     Element: Items,
     belongsOnSidebar: true,
     Icon: GiSwordSmithing,
   },
   {
-    id: 9,
+    id: 10,
     path: "/campaigns/:campaignId/sessions/:sessionId",
     Element: SessionDetail,
   },
   {
-    id: 10,
+    id: 11,
     path: "/settings",
     Element: Settings,
     belongsOnSidebar: true,
