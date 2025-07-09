@@ -3,7 +3,7 @@ import { useParams, useNavigate, Link } from 'react-router';
 import { useCampaigns } from '@/hooks/useCampaigns';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/atomic/Card';
 import { BookOpen } from '@/components/atomic/Icons';
-import './SessionDetail.css';
+import '@/css/SessionDetail.css';
 
 const SessionDetail: React.FC = () => {
   const { campaignId, sessionId } = useParams<{ campaignId: string; sessionId: string }>();

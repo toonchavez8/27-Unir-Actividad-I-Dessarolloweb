@@ -10,6 +10,7 @@ function Layout() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   //Revisamos si estamos en mobile y ajustamos el estado del sidebar
@@ -77,6 +78,16 @@ function Layout() {
     return () => window.removeEventListener("keydown", handleEscape);
   }, [isSearchOpen]);
 
+  // Mouse tracking for decorative highlight circle
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
   const handleClose = () => {
     setIsOpen(false);
   };
@@ -99,6 +110,15 @@ function Layout() {
 
   return (
     <div className="layout">
+      {/* Decorative mouse-following highlight circle */}
+      <div 
+        className="layout__highlight-circle"
+        style={{
+          left: `${mousePosition.x}px`,
+          top: `${mousePosition.y}px`,
+        }}
+      />
+      
       {/* Search Modal overlays everything */}
       <SearchModal
         isOpen={isSearchOpen}
