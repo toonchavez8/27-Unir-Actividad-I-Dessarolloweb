@@ -1,5 +1,5 @@
 import type { NavigateFunction } from "react-router";
-import type { Session } from "@/types/campaign";
+import type { Session } from "@/types/campaigns";
 
 export interface SessionsListProps {
   readonly sessions: Session[];
