@@ -7,12 +7,17 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deepclean": "rm -rf node_modules dist .cache .tmp && find . -name '*.tsbuildinfo' -delete",
+    "clean": "rm -rf dist .cache .tmp && find . -name '*.tsbuildinfo' -delete && rm -rf .eslintcache"
   },
   "dependencies": {
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-router": "^7.6.3"
+    "react-icons": "^5.5.0",
+    "react-router": "^7.6.3",
+    "react-simple-wysiwyg": "^3.4.0",
+    "vite-tsconfig-paths": "^5.1.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.29.0",

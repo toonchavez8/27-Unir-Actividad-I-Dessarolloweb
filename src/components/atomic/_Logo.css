@@ -1,0 +1,114 @@
+@import url("@/css/_Variables.css");
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  margin-inline: auto;
+}
+
+/* Logo Elements */
+.logo__image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+}
+
+.logo__text {
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+  margin: 0;
+  transition: opacity 0.3s ease !important;
+}
+
+/* Logo Variants - Layout */
+.logo--horizontal {
+  flex-direction: row;
+}
+
+.logo--vertical {
+  flex-direction: column;
+  text-align: center;
+  gap: 0.5rem;
+}
+
+/* Logo Modifiers - Size */
+.logo--small .logo__image {
+  width: 2rem;
+  height: 2rem;
+}
+
+.logo--small .logo__text {
+  font-size: 1rem;
+}
+
+.logo--medium .logo__image {
+  width: 2.2rem;
+  height: 2.2rem;
+  margin-left: 1rem;
+}
+
+.logo--medium .logo__text {
+  font-size: 1.3rem;
+}
+
+.logo--large .logo__image {
+  width: 4rem;
+  height: 4rem;
+  padding-inline: 1rem;
+}
+
+.logo--large .logo__text {
+  font-size: 1.25rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .logo--large .logo__image {
+    width: 40px;
+    height: 40px;
+  }
+
+  .logo--large .logo__text {
+    font-size: 1.125rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    gap: 0.5rem;
+  }
+
+  /* Force vertical layout on very small screens if horizontal */
+  .logo--horizontal {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .logo--small .logo__image {
+    width: 20px;
+    height: 20px;
+  }
+
+  .logo--medium .logo__image {
+    width: 28px;
+    height: 28px;
+  }
+
+  .logo--large .logo__image {
+    width: 36px;
+    height: 36px;
+  }
+
+  .logo__text {
+    font-size: 0.875rem;
+  }
+}
+
+/* Hover Effects */
+.logo:hover {
+  transform: scale(1.05);
+}

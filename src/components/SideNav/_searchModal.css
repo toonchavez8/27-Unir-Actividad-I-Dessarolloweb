@@ -1,0 +1,103 @@
+.sidenav__search-icon-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.sidenav__search-icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: var(--text-secondary,);
+  transition: color 0.2s;
+}
+.sidenav__search-icon-btn:hover {
+  color: var(--text-primary);
+}
+.sidenav__footer-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.sidenav__footer-searchbar {
+  flex: 1;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border-color);
+  background: var(--background-color);
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.2s;
+  min-width: 120px;
+}
+.sidenav__footer-searchbar:focus {
+  border: 1.5px solid var(--color-primary);
+}
+.search-modal__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(30, 32, 38, 0.25);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.2s;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.search-modal__container {
+  background: var(--background-color);
+  border-radius: 1rem;
+  border: 1.5px solid var(--border-color);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  outline: none;
+  min-width: 320px;
+  max-width: 90vw;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  animation: popIn 0.18s cubic-bezier(0.4, 2, 0.6, 1);
+}
+@keyframes popIn {
+  from {
+    transform: scale(0.97) translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+.search-modal__input {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border-radius: 0.7rem;
+  color: var(--text-primary);
+  border: 1.5px solid var(--border-color);
+  font-size: 1.1rem;
+  background: var(--background-color);
+  transition: border 0.2s;
+  outline: none;
+}
+
+.search-modal__results {
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.search-modal__placeholder {
+  color: var(--text-primary);
+  font-size: 1rem;
+  text-align: center;
+}
