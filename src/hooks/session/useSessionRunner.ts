@@ -35,9 +35,7 @@ export function useSessionRunner(
         setSessionTime((prev) => prev + 1);
       }, 1000);
     } else {
-      if (timerRef.current) {
-        clearInterval(timerRef.current);
-      }
+      clearInterval(timerRef.current);
     }
 
     return () => {

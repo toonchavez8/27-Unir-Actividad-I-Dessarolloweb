@@ -3,15 +3,15 @@ import type { Session, Campaign } from "@/types/campaigns";
 import "./SessionHeader.css";
 
 interface SessionHeaderProps {
-  session: Session;
-  campaign: Campaign;
-  sessionTime: number;
-  isRunning: boolean;
-  isPaused: boolean;
-  formatTime: (seconds: number) => string;
-  onStart: () => void;
-  onPause: () => void;
-  onEnd: () => void;
+  readonly session: Session;
+  readonly campaign: Campaign;
+  readonly sessionTime: number;
+  readonly isRunning: boolean;
+  readonly isPaused: boolean;
+  readonly formatTime: (seconds: number) => string;
+  readonly onStart: () => void;
+  readonly onPause: () => void;
+  readonly onEnd: () => void;
 }
 
 export function SessionHeader({

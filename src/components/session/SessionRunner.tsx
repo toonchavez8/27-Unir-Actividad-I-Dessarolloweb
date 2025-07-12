@@ -1,8 +1,8 @@
 import { useParams, useNavigate } from "react-router";
 import { useCampaigns } from "@/hooks/useCampaigns";
-import { SessionHeader } from "./SessionHeader";
-import { SessionSidebar } from "./SessionSidebar";
-import { SessionTimeline } from "./SessionTimeline";
+import { SessionHeader } from "./SessionHeader.tsx";
+import { SessionSidebar } from "./SessionSidebar.tsx";
+import { SessionTimeline } from "./SessionTimeline.tsx";
 import { useSessionRunner } from "@/hooks/session/useSessionRunner";
 import "./SessionRunner.css";
 

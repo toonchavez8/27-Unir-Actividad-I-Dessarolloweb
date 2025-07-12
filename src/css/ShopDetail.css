@@ -761,3 +761,204 @@
     border: 1px solid currentColor;
   }
 }
+
+/* Inventory Table Styles */
+.shop-detail__inventory-table-wrapper {
+  overflow-x: auto;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  background: var(--background-color);
+  margin-top: 1rem;
+}
+
+.shop-detail__inventory-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.shop-detail__inventory-table th {
+  background: var(--surface-color);
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.shop-detail__inventory-table th:first-child {
+  border-top-left-radius: 0.5rem;
+}
+
+.shop-detail__inventory-table th:last-child {
+  border-top-right-radius: 0.5rem;
+}
+
+.shop-detail__inventory-row {
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color 0.2s ease-in-out;
+}
+
+.shop-detail__inventory-row:hover {
+  background: var(--surface-color);
+}
+
+.shop-detail__inventory-row:last-child {
+  border-bottom: none;
+}
+
+.shop-detail__inventory-table td {
+  padding: 0.75rem 1rem;
+  vertical-align: middle;
+}
+
+.shop-detail__item-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--primary-color);
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+  text-decoration: none;
+}
+
+.shop-detail__item-link:hover {
+  color: var(--primary-dark);
+}
+
+.shop-detail__item-view-icon {
+  font-size: 0.75rem;
+}
+
+.shop-detail__price-display {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-weight: 500;
+}
+
+.shop-detail__status-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.shop-detail__status-badge--available {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.shop-detail__status-badge--unavailable {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.shop-detail__edit-actions,
+.shop-detail__view-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.shop-detail__edit-input {
+  width: 100%;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.25rem;
+  font-size: 0.8125rem;
+  background: var(--background-color);
+  color: var(--text-primary);
+}
+
+.shop-detail__edit-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.1);
+}
+
+.shop-detail__edit-input--price {
+  max-width: 80px;
+}
+
+.shop-detail__edit-input--quantity {
+  max-width: 60px;
+}
+
+.shop-detail__edit-select {
+  width: 100%;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.25rem;
+  font-size: 0.8125rem;
+  background: var(--background-color);
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.shop-detail__edit-select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.1);
+}
+
+.shop-detail__save-btn,
+.shop-detail__cancel-btn,
+.shop-detail__edit-btn-small,
+.shop-detail__delete-btn-small {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.375rem;
+  border: none;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  min-width: 32px;
+  height: 32px;
+}
+
+.shop-detail__save-btn {
+  background: var(--success-color, #10b981);
+  color: white;
+}
+
+.shop-detail__save-btn:hover {
+  background: var(--success-dark, #059669);
+}
+
+.shop-detail__cancel-btn {
+  background: var(--text-secondary);
+  color: white;
+}
+
+.shop-detail__cancel-btn:hover {
+  background: #6b7280;
+}
+
+.shop-detail__edit-btn-small {
+  background: var(--primary-color);
+  color: white;
+}
+
+.shop-detail__edit-btn-small:hover {
+  background: var(--primary-dark);
+}
+
+.shop-detail__delete-btn-small {
+  background: var(--danger-color);
+  color: white;
+}
+
+.shop-detail__delete-btn-small:hover {
+  background: var(--danger-dark);
+}
+
+/* Modal Overlay */

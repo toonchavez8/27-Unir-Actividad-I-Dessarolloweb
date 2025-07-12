@@ -12,16 +12,20 @@ import {
   FaCoins,
   FaPlus,
   FaEye,
-  FaTimes
+  FaTimes,
+  FaSave,
+  FaUndo
 } from "react-icons/fa";
-import type { Shop } from "@/types/campaigns";
+import type { Shop, ShopItem } from "@/types/campaigns";
 
 const ShopDetail = () => {
   const { shopId } = useParams<{ shopId: string }>();
   const navigate = useNavigate();
-  const { shops, campaigns, npcs, locations, items, deleteShop, loading } = useCampaigns();
+  const { shops, campaigns, npcs, locations, items, deleteShop, updateShop, loading } = useCampaigns();
   const [shop, setShop] = useState<Shop | null>(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [editingItem, setEditingItem] = useState<string | null>(null);
+  const [editValues, setEditValues] = useState<Partial<ShopItem>>({});
 
   useEffect(() => {
     if (!loading && shopId) {
@@ -56,6 +60,49 @@ const ShopDetail = () => {
     if (!locationId) return "No Location";
     const location = locations.find(l => l.id === locationId);
     return location?.name || "Unknown Location";
+  };
+
+  const handleEditItem = (itemId: string, currentItem: ShopItem) => {
+    setEditingItem(itemId);
+    setEditValues({
+      price: currentItem.price,
+      quantity: currentItem.quantity,
+      available: currentItem.available
+    });
+  };
+
+  const handleSaveEdit = (itemId: string) => {
+    if (!shop) return;
+    
+    const updatedItems = shop.items.map(item => 
+      item.itemId === itemId 
+        ? { ...item, ...editValues }
+        : item
+    );
+    
+    const updatedShop = { ...shop, items: updatedItems };
+    updateShop(shop.id, updatedShop);
+    setShop(updatedShop);
+    setEditingItem(null);
+    setEditValues({});
+  };
+
+  const handleCancelEdit = () => {
+    setEditingItem(null);
+    setEditValues({});
+  };
+
+  const handleDeleteItem = (itemId: string) => {
+    if (!shop) return;
+    
+    const updatedItems = shop.items.filter(item => item.itemId !== itemId);
+    const updatedShop = { ...shop, items: updatedItems };
+    updateShop(shop.id, updatedShop);
+    setShop(updatedShop);
+  };
+
+  const handleEditValueChange = (field: keyof ShopItem, value: string | number | boolean) => {
+    setEditValues(prev => ({ ...prev, [field]: value }));
   };
 
   const getShopItems = () => {
@@ -218,46 +265,130 @@ const ShopDetail = () => {
                 </button>
               </div>
             ) : (
-              <div className="shop-detail__items-grid">
-                {shopItems.map((shopItem) => (
-                  <div key={shopItem.itemId} className="shop-detail__item-card">
-                    <div className="shop-detail__item-header">
-                      <h4 className="shop-detail__item-name">
-                        {shopItem.item?.name}
-                      </h4>
-                      <button
-                        className="shop-detail__item-view"
-                        onClick={() => navigate(`/items/${shopItem.itemId}`)}
-                        title="View item details"
-                      >
-                        <FaEye />
-                      </button>
-                    </div>
-                    
-                    <p className="shop-detail__item-description">
-                      {shopItem.item?.description}
-                    </p>
-                    
-                    <div className="shop-detail__item-details">
-                      <div className="shop-detail__item-price">
-                        <FaCoins className="shop-detail__price-icon" />
-                        <span>{shopItem.price} gp</span>
-                      </div>
-                      
-                      <div className="shop-detail__item-quantity">
-                        <strong>Qty:</strong> {shopItem.quantity}
-                      </div>
-                      
-                      <div className={`shop-detail__item-status ${
-                        shopItem.available 
-                          ? "shop-detail__item-status--available" 
-                          : "shop-detail__item-status--unavailable"
-                      }`}>
-                        {shopItem.available ? "Available" : "Out of Stock"}
-                      </div>
-                    </div>
-                  </div>
-                ))}
+              <div className="shop-detail__inventory-table-wrapper">
+                <table className="shop-detail__inventory-table">
+                  <thead>
+                    <tr>
+                      <th>Item</th>
+                      <th>Description</th>
+                      <th>Price (gp)</th>
+                      <th>Quantity</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {shopItems.map((shopItem) => (
+                      <tr key={shopItem.itemId} className="shop-detail__inventory-row">
+                        <td className="shop-detail__item-name">
+                          <button
+                            className="shop-detail__item-link"
+                            onClick={() => navigate(`/items/${shopItem.itemId}`)}
+                            title="View item details"
+                          >
+                            <FaEye className="shop-detail__item-view-icon" />
+                            {shopItem.item?.name}
+                          </button>
+                        </td>
+                        
+                        <td className="shop-detail__item-description">
+                          {shopItem.item?.description}
+                        </td>
+                        
+                        <td className="shop-detail__item-price">
+                          {editingItem === shopItem.itemId ? (
+                            <input
+                              type="number"
+                              value={editValues.price || 0}
+                              onChange={(e) => handleEditValueChange('price', parseFloat(e.target.value) || 0)}
+                              className="shop-detail__edit-input shop-detail__edit-input--price"
+                              min="0"
+                              step="0.01"
+                            />
+                          ) : (
+                            <span className="shop-detail__price-display">
+                              <FaCoins className="shop-detail__price-icon" />
+                              {shopItem.price}
+                            </span>
+                          )}
+                        </td>
+                        
+                        <td className="shop-detail__item-quantity">
+                          {editingItem === shopItem.itemId ? (
+                            <input
+                              type="number"
+                              value={editValues.quantity || 0}
+                              onChange={(e) => handleEditValueChange('quantity', parseInt(e.target.value) || 0)}
+                              className="shop-detail__edit-input shop-detail__edit-input--quantity"
+                              min="0"
+                            />
+                          ) : (
+                            <span>{shopItem.quantity}</span>
+                          )}
+                        </td>
+                        
+                        <td className="shop-detail__item-status">
+                          {editingItem === shopItem.itemId ? (
+                            <select
+                              value={editValues.available ? 'true' : 'false'}
+                              onChange={(e) => handleEditValueChange('available', e.target.value === 'true')}
+                              className="shop-detail__edit-select"
+                            >
+                              <option value="true">Available</option>
+                              <option value="false">Out of Stock</option>
+                            </select>
+                          ) : (
+                            <span className={`shop-detail__status-badge ${
+                              shopItem.available 
+                                ? "shop-detail__status-badge--available" 
+                                : "shop-detail__status-badge--unavailable"
+                            }`}>
+                              {shopItem.available ? "Available" : "Out of Stock"}
+                            </span>
+                          )}
+                        </td>
+                        
+                        <td className="shop-detail__item-actions">
+                          {editingItem === shopItem.itemId ? (
+                            <div className="shop-detail__edit-actions">
+                              <button
+                                className="shop-detail__save-btn"
+                                onClick={() => handleSaveEdit(shopItem.itemId)}
+                                title="Save changes"
+                              >
+                                <FaSave />
+                              </button>
+                              <button
+                                className="shop-detail__cancel-btn"
+                                onClick={handleCancelEdit}
+                                title="Cancel edit"
+                              >
+                                <FaUndo />
+                              </button>
+                            </div>
+                          ) : (
+                            <div className="shop-detail__view-actions">
+                              <button
+                                className="shop-detail__edit-btn-small"
+                                onClick={() => handleEditItem(shopItem.itemId, shopItem)}
+                                title="Edit item"
+                              >
+                                <FaEdit />
+                              </button>
+                              <button
+                                className="shop-detail__delete-btn-small"
+                                onClick={() => handleDeleteItem(shopItem.itemId)}
+                                title="Remove from shop"
+                              >
+                                <FaTrash />
+                              </button>
+                            </div>
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             )}
           </div>
