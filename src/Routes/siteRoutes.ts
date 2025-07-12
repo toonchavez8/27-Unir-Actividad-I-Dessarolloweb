@@ -3,6 +3,8 @@ import CampaignDetail from "@/pages/CampaignDetail";
 import Items from "@/pages/Items";
 import LandingPage from "@/pages/LandingPage";
 import Locations from "@/pages/Locations";
+import NewNPC from "@/pages/NewNPC";
+import NPCDetail from "@/pages/NPCDetail";
 import NotFound from "@/pages/NotFound";
 import Npcs from "@/pages/Npcs";
 import Sessiones from "@/pages/Sessiones";
@@ -62,32 +64,47 @@ export const siteRoutes: SiteRoute[] = [
   },
   {
     id: 7,
+    path: "/npcs/new",
+    Element: NewNPC,
+  },
+  {
+    id: 8,
+    path: "/campaigns/:campaignId/npcs/new",
+    Element: NewNPC,
+  },
+  {
+    id: 9,
+    path: "/campaigns/:campaignId/npcs/:npcId",
+    Element: NPCDetail,
+  },
+  {
+    id: 10,
     path: "/shops",
     Element: Shops,
     belongsOnSidebar: true,
     Icon: FaShop,
   },
   {
-    id: 8,
+    id: 11,
     path: "/locations",
     Element: Locations,
     belongsOnSidebar: true,
     Icon: FaMapLocationDot,
   },
   {
-    id: 9,
+    id: 12,
     path: "/items",
     Element: Items,
     belongsOnSidebar: true,
     Icon: GiSwordSmithing,
   },
   {
-    id: 10,
+    id: 13,
     path: "/campaigns/:campaignId/sessions/:sessionId",
     Element: SessionDetail,
   },
   {
-    id: 11,
+    id: 14,
     path: "/settings",
     Element: Settings,
     belongsOnSidebar: true,
