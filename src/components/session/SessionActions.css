@@ -1,0 +1,265 @@
+/* Session Actions Component */
+.session-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1rem;
+  background: var(--white);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.session-actions__section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.session-actions__title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+/* Quick Note */
+.session-actions__quick-note {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.session-actions__note-input {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 0.875rem;
+  transition: border-color 0.2s ease;
+}
+
+.session-actions__note-input:focus {
+  outline: none;
+  border-color: var(--primary-500);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.session-actions__note-input:disabled {
+  background: var(--gray-100);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+.session-actions__note-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: none;
+  border-radius: 6px;
+  background: var(--primary-500);
+  color: var(--white);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.session-actions__note-button:hover:not(:disabled) {
+  background: var(--primary-600);
+}
+
+.session-actions__note-button:disabled {
+  background: var(--gray-300);
+  cursor: not-allowed;
+}
+
+/* Dice */
+.session-actions__dice {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.session-actions__dice-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  width: 3rem;
+  height: 3rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background: var(--white);
+  color: var(--text-dark);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.session-actions__dice-button:hover:not(:disabled) {
+  border-color: var(--primary-500);
+  background: var(--primary-50);
+  color: var(--primary-600);
+  transform: translateY(-1px);
+}
+
+.session-actions__dice-button:disabled {
+  background: var(--gray-100);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+.session-actions__dice-result {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: var(--success-500);
+  color: var(--white);
+  border-radius: 50%;
+  font-size: 1rem;
+  font-weight: 700;
+  animation: diceRoll 0.5s ease-out;
+}
+
+@keyframes diceRoll {
+  0% {
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2) rotate(180deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+    opacity: 1;
+  }
+}
+
+/* Quick Actions Grid */
+.session-actions__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.5rem;
+}
+
+.session-actions__action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background: var(--white);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 4rem;
+}
+
+.session-actions__action:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.session-actions__action:disabled {
+  background: var(--gray-100);
+  color: var(--text-muted);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.session-actions__action--red {
+  border-color: var(--error-200);
+}
+
+.session-actions__action--red:hover:not(:disabled) {
+  border-color: var(--error-500);
+  background: var(--error-50);
+  color: var(--error-600);
+}
+
+.session-actions__action--purple {
+  border-color: var(--purple-200);
+}
+
+.session-actions__action--purple:hover:not(:disabled) {
+  border-color: var(--purple-500);
+  background: var(--purple-50);
+  color: var(--purple-600);
+}
+
+.session-actions__action--orange {
+  border-color: var(--warning-200);
+}
+
+.session-actions__action--orange:hover:not(:disabled) {
+  border-color: var(--warning-500);
+  background: var(--warning-50);
+  color: var(--warning-600);
+}
+
+.session-actions__action--yellow {
+  border-color: var(--yellow-200);
+}
+
+.session-actions__action--yellow:hover:not(:disabled) {
+  border-color: var(--yellow-500);
+  background: var(--yellow-50);
+  color: var(--yellow-600);
+}
+
+.session-actions__action--green {
+  border-color: var(--success-200);
+}
+
+.session-actions__action--green:hover:not(:disabled) {
+  border-color: var(--success-500);
+  background: var(--success-50);
+  color: var(--success-600);
+}
+
+.session-actions__action-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.session-actions__action-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .session-actions {
+    padding: 0.75rem;
+    gap: 1rem;
+  }
+
+  .session-actions__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .session-actions__action {
+    min-height: 3.5rem;
+    padding: 0.5rem;
+  }
+
+  .session-actions__action-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .session-actions__action-label {
+    font-size: 0.6875rem;
+  }
+}

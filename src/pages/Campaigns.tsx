@@ -97,7 +97,7 @@ export function Campaigns() {
         </div>
         <button
           className="campaigns-page__new-button"
-          onClick={() => navigate("/campaigns/new")}
+          onClick={() => navigate("/campaigns/create/new")}
         >
           <FaPlus className="campaigns-page__new-button-icon" />
           New Campaign
@@ -132,7 +132,7 @@ export function Campaigns() {
               </p>
               <button
                 className="campaigns-page__empty-button"
-                onClick={() => navigate("/campaigns/new")}
+                onClick={() => navigate("/campaigns/create/new")}
               >
                 Create Your First Campaign
               </button>

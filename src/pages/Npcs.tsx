@@ -112,7 +112,7 @@ export function Npcs() {
         </div>
         <button
           className="npcs-page__new-button"
-          onClick={() => navigate("/npcs/new")}
+          onClick={() => navigate("/npcs/create/new")}
           aria-label="Create new NPC"
         >
           <FaPlus className="npcs-page__new-icon" />
@@ -197,7 +197,7 @@ export function Npcs() {
               </p>
               <button
                 className="npcs-page__empty-button"
-                onClick={() => navigate("/npcs/new")}
+                onClick={() => navigate("/npcs/create/new")}
               >
                 Create Your First NPC
               </button>

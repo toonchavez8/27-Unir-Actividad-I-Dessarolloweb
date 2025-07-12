@@ -182,7 +182,7 @@ const SessionDetail: React.FC = () => {
         >
           Go Back
         </button>
-        <Link to={`/sessions/${session.id}/edit`} className="btn btn--primary">
+        <Link to={`/campaigns/${session.campaignId}/sessions/${session.id}/edit`} className="btn btn--primary">
           Edit Session
         </Link>
         {campaign && (

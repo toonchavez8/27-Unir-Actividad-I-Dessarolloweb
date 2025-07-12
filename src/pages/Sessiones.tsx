@@ -80,7 +80,7 @@ const Sessiones = () => {
         </div>
         <button
           className="sessions__new-btn"
-          onClick={() => navigate("/sessions/new")}
+          onClick={() => navigate("/sessions/create/new")}
         >
           <FaPlus className="sessions__new-btn-icon" />
           New Session
@@ -142,7 +142,7 @@ const Sessiones = () => {
               <p className="sessions__empty-text">No sessions planned yet</p>
               <button
                 className="sessions__empty-btn"
-                onClick={() => navigate("/sessions/new")}
+                onClick={() => navigate("/sessions/create/new")}
               >
                 Plan Your First Session
               </button>
@@ -222,7 +222,7 @@ const Sessiones = () => {
                 {session.status === "planned" && (
                   <button
                     className="sessions__action-btn sessions__action-btn--play"
-                    onClick={() => navigate(`/sessions/${session.id}/play`)}
+                    onClick={() => navigate(`/sessions/${session.id}/run`)}
                   >
                     <FaPlay className="sessions__action-btn-icon" />
                     Start Session

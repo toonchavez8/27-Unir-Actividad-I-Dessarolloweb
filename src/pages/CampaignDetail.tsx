@@ -73,7 +73,11 @@ export function CampaignDetail() {
 
   return (
     <div className="campaign-detail page-container">
-      <CampaignHeader navigate={navigate} campaignStatus={campaign.status} />
+      <CampaignHeader 
+        navigate={navigate} 
+        campaignStatus={campaign.status}
+        campaignId={campaign.id}
+      />
 
       <CampaignHero campaign={campaign} />
 

@@ -1,0 +1,96 @@
+/* Session Runner Main Component */
+.session-runner {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--gray-50);
+  overflow: hidden;
+}
+
+.session-runner.page-container {
+  padding: 0;
+  max-width: none;
+}
+
+.session-runner__content {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* Error State */
+.session-runner--error {
+  background: var(--white);
+  align-items: center;
+  justify-content: center;
+}
+
+.session-runner__error-content {
+  text-align: center;
+  max-width: 400px;
+  padding: 2rem;
+}
+
+.session-runner__error-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin: 0 0 1rem 0;
+}
+
+.session-runner__error-message {
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0 0 2rem 0;
+}
+
+.session-runner__error-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--primary-500);
+  color: var(--white);
+  border: none;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.session-runner__error-button:hover {
+  background: var(--primary-600);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .session-runner {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .session-runner__content {
+    flex-direction: column;
+    height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .session-runner__error-content {
+    padding: 1.5rem;
+  }
+
+  .session-runner__error-title {
+    font-size: 1.25rem;
+  }
+
+  .session-runner__error-message {
+    font-size: 0.875rem;
+  }
+}

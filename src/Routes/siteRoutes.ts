@@ -1,9 +1,14 @@
 import Campaigns from "@/pages/Campaigns";
 import CampaignDetail from "@/pages/CampaignDetail";
+import EditCampaign from "@/pages/EditCampaign";
+import EditSession from "@/pages/EditSession";
 import Items from "@/pages/Items";
 import LandingPage from "@/pages/LandingPage";
 import Locations from "@/pages/Locations";
+import NewCampaign from "@/pages/NewCampaign";
 import NewNPC from "@/pages/NewNPC";
+import NewSession from "@/pages/NewSession";
+import NewShop from "@/pages/NewShop";
 import NPCDetail from "@/pages/NPCDetail";
 import NotFound from "@/pages/NotFound";
 import Npcs from "@/pages/Npcs";
@@ -11,6 +16,8 @@ import Sessiones from "@/pages/Sessiones";
 import SessionDetail from "@/pages/SessionDetail";
 import Settings from "@/pages/Settings";
 import Shops from "@/pages/Shops";
+import ShopDetail from "@/pages/ShopDetail";
+import { SessionRunner } from "@/components/session";
 import type { ComponentType } from "react";
 import { FaGear, FaMapLocationDot, FaShop } from "react-icons/fa6";
 import { GiMagicPortal, GiSwordSmithing } from "react-icons/gi";
@@ -50,61 +57,111 @@ export const siteRoutes: SiteRoute[] = [
   },
   {
     id: 5,
+    path: "/campaigns/create/new",
+    Element: NewCampaign,
+  },
+  {
+    id: 6,
+    path: "/campaigns/:campaignId/edit",
+    Element: EditCampaign,
+  },
+  {
+    id: 7,
     path: "/sessions",
     Element: Sessiones,
     belongsOnSidebar: true,
     Icon: GiMagicPortal,
   },
   {
-    id: 6,
+    id: 8,
+    path: "/sessions/create/new",
+    Element: NewSession,
+  },
+  {
+    id: 9,
+    path: "/campaigns/:campaignId/sessions/create/new",
+    Element: NewSession,
+  },
+  {
+    id: 10,
+    path: "/campaigns/:campaignId/sessions/:sessionId/edit",
+    Element: EditSession,
+  },
+  {
+    id: 11,
     path: "/npcs",
     Element: Npcs,
     belongsOnSidebar: true,
     Icon: MdPeopleAlt,
   },
   {
-    id: 7,
-    path: "/npcs/new",
+    id: 12,
+    path: "/npcs/create/new",
     Element: NewNPC,
   },
   {
-    id: 8,
-    path: "/campaigns/:campaignId/npcs/new",
+    id: 13,
+    path: "/campaigns/:campaignId/npcs/create/new",
     Element: NewNPC,
   },
   {
-    id: 9,
+    id: 14,
     path: "/campaigns/:campaignId/npcs/:npcId",
     Element: NPCDetail,
   },
   {
-    id: 10,
+    id: 15,
     path: "/shops",
     Element: Shops,
     belongsOnSidebar: true,
     Icon: FaShop,
   },
   {
-    id: 11,
+    id: 22,
+    path: "/shops/:shopId",
+    Element: ShopDetail,
+  },
+  {
+    id: 23,
+    path: "/shops/create/new",
+    Element: NewShop,
+  },
+  {
+    id: 24,
+    path: "/campaigns/:campaignId/shops/create/new",
+    Element: NewShop,
+  },
+  {
+    id: 16,
     path: "/locations",
     Element: Locations,
     belongsOnSidebar: true,
     Icon: FaMapLocationDot,
   },
   {
-    id: 12,
+    id: 17,
     path: "/items",
     Element: Items,
     belongsOnSidebar: true,
     Icon: GiSwordSmithing,
   },
   {
-    id: 13,
+    id: 18,
     path: "/campaigns/:campaignId/sessions/:sessionId",
     Element: SessionDetail,
   },
   {
-    id: 14,
+    id: 19,
+    path: "/sessions/:sessionId/run",
+    Element: SessionRunner,
+  },
+  {
+    id: 20,
+    path: "/campaigns/:campaignId/sessions/:sessionId/run",
+    Element: SessionRunner,
+  },
+  {
+    id: 21,
     path: "/settings",
     Element: Settings,
     belongsOnSidebar: true,
