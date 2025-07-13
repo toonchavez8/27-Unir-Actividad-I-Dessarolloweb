@@ -2,12 +2,14 @@ import Campaigns from "@/pages/Campaigns";
 import CampaignDetail from "@/pages/CampaignDetail";
 import EditCampaign from "@/pages/EditCampaign";
 import EditSession from "@/pages/EditSession";
+import EditItem from "@/pages/EditItem";
 import Items from "@/pages/Items";
 import ItemDetail from "@/pages/ItemDetail";
 import LandingPage from "@/pages/LandingPage";
 import Locations from "@/pages/Locations";
 import LocationDetail from "@/pages/LocationDetail";
 import NewCampaign from "@/pages/NewCampaign";
+import NewItem from "@/pages/NewItem";
 import NewLocation from "@/pages/NewLocation";
 import NewNPC from "@/pages/NewNPC";
 import NewSession from "@/pages/NewSession";
@@ -165,12 +167,22 @@ export const siteRoutes: SiteRoute[] = [
   {
     id: 27,
     path: "/items/create/new",
-    Element: Items, // TODO: Replace with NewItem component
+    Element: NewItem,
+  },
+  {
+    id: 29,
+    path: "/campaigns/:campaignId/items/create",
+    Element: NewItem,
   },
   {
     id: 18,
     path: "/items/:itemId",
     Element: ItemDetail,
+  },
+  {
+    id: 28,
+    path: "/items/:itemId/edit",
+    Element: EditItem,
   },
   {
     id: 19,

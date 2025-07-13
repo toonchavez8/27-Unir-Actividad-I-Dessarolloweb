@@ -231,7 +231,9 @@ const Sessiones = () => {
 
                 <button
                   className="sessions__action-btn sessions__action-btn--edit"
-                  onClick={() => navigate(`/sessions/${session.id}/edit`)}
+                  onClick={() => navigate(
+                    `/campaigns/${session.campaignId}/sessions/${session.id}?edit=true`
+                  )}
                 >
                   <FaEdit className="sessions__action-btn-icon" />
                   Edit

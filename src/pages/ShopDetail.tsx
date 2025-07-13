@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
 import { useCampaigns } from "@/hooks/useCampaigns";
+import ShopInventory from "@/components/ShopInventory/ShopInventory";
 import "../css/ShopDetail.css";
 import {
   FaArrowLeft,
@@ -9,12 +10,10 @@ import {
   FaMapMarkerAlt,
   FaUser,
   FaBox,
-  FaCoins,
-  FaPlus,
-  FaEye,
   FaTimes,
-  FaSave,
-  FaUndo
+  FaSearch,
+  FaCheck,
+  FaPlus
 } from "react-icons/fa";
 import type { Shop, ShopItem } from "@/types/campaigns";
 
@@ -24,8 +23,9 @@ const ShopDetail = () => {
   const { shops, campaigns, npcs, locations, items, deleteShop, updateShop, loading } = useCampaigns();
   const [shop, setShop] = useState<Shop | null>(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [editingItem, setEditingItem] = useState<string | null>(null);
-  const [editValues, setEditValues] = useState<Partial<ShopItem>>({});
+  const [showAddItemModal, setShowAddItemModal] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedItems, setSelectedItems] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     if (!loading && shopId) {
@@ -62,47 +62,70 @@ const ShopDetail = () => {
     return location?.name || "Unknown Location";
   };
 
-  const handleEditItem = (itemId: string, currentItem: ShopItem) => {
-    setEditingItem(itemId);
-    setEditValues({
-      price: currentItem.price,
-      quantity: currentItem.quantity,
-      available: currentItem.available
+  const handleUpdateShop = (shopId: string, updatedShop: Shop) => {
+    updateShop(shopId, updatedShop);
+    setShop(updatedShop);
+  };
+
+  // Add Item Modal Functions
+  const getAvailableItems = () => {
+    if (!shop) return [];
+    const shopItemIds = new Set(shop.items.map(item => item.itemId));
+    return items.filter(item => 
+      item.campaignId === shop.campaignId && !shopItemIds.has(item.id)
+    );
+  };
+
+  const getFilteredItems = () => {
+    const availableItems = getAvailableItems();
+    if (!searchQuery.trim()) return availableItems;
+    
+    const query = searchQuery.toLowerCase();
+    return availableItems.filter(item =>
+      item.name.toLowerCase().includes(query) ||
+      item.description.toLowerCase().includes(query) ||
+      item.type.toLowerCase().includes(query)
+    );
+  };
+
+  const handleItemSelect = (itemId: string) => {
+    setSelectedItems(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(itemId)) {
+        newSet.delete(itemId);
+      } else {
+        newSet.add(itemId);
+      }
+      return newSet;
     });
   };
 
-  const handleSaveEdit = (itemId: string) => {
-    if (!shop) return;
-    
-    const updatedItems = shop.items.map(item => 
-      item.itemId === itemId 
-        ? { ...item, ...editValues }
-        : item
-    );
-    
-    const updatedShop = { ...shop, items: updatedItems };
+  const handleAddSelectedItems = () => {
+    if (!shop || selectedItems.size === 0) return;
+
+    const newShopItems: ShopItem[] = Array.from(selectedItems).map(itemId => ({
+      itemId,
+      price: 0, // Default price, user can edit later
+      quantity: 1, // Default quantity
+      available: true
+    }));
+
+    const updatedShop = {
+      ...shop,
+      items: [...shop.items, ...newShopItems]
+    };
+
     updateShop(shop.id, updatedShop);
     setShop(updatedShop);
-    setEditingItem(null);
-    setEditValues({});
+    setShowAddItemModal(false);
+    setSelectedItems(new Set());
+    setSearchQuery("");
   };
 
-  const handleCancelEdit = () => {
-    setEditingItem(null);
-    setEditValues({});
-  };
-
-  const handleDeleteItem = (itemId: string) => {
-    if (!shop) return;
-    
-    const updatedItems = shop.items.filter(item => item.itemId !== itemId);
-    const updatedShop = { ...shop, items: updatedItems };
-    updateShop(shop.id, updatedShop);
-    setShop(updatedShop);
-  };
-
-  const handleEditValueChange = (field: keyof ShopItem, value: string | number | boolean) => {
-    setEditValues(prev => ({ ...prev, [field]: value }));
+  const handleCloseAddItemModal = () => {
+    setShowAddItemModal(false);
+    setSelectedItems(new Set());
+    setSearchQuery("");
   };
 
   const getShopItems = () => {
@@ -240,159 +263,121 @@ const ShopDetail = () => {
             </div>
           </div>
 
-          <div className="shop-detail__inventory">
-            <div className="shop-detail__inventory-header">
-              <h2>Inventory</h2>
-              <button
-                className="shop-detail__add-item-btn"
-                onClick={() => navigate(`/shops/${shop.id}/items/new`)}
-              >
-                <FaPlus className="shop-detail__add-item-icon" />
-                Add Item
-              </button>
-            </div>
+          <ShopInventory
+            shop={shop}
+            shopItems={shopItems}
+            onUpdateShop={handleUpdateShop}
+            onAddItems={() => setShowAddItemModal(true)}
+          />
+        </div>
 
-            {shopItems.length === 0 ? (
-              <div className="shop-detail__empty-inventory">
-                <FaBox className="shop-detail__empty-icon" />
-                <h3>No Items Yet</h3>
-                <p>This shop doesn't have any items in its inventory.</p>
-                <button
-                  className="shop-detail__add-first-item"
-                  onClick={() => navigate(`/shops/${shop.id}/items/new`)}
+        {/* Add Item Modal */}
+        {showAddItemModal && (
+          <div className="shop-detail__modal-overlay">
+            <div className="shop-detail__modal shop-detail__modal--large">
+              <div className="shop-detail__modal-header">
+                <h3>Add Items to Inventory</h3>
+                <button 
+                  className="shop-detail__modal-close"
+                  onClick={handleCloseAddItemModal}
                 >
-                  <FaPlus /> Add First Item
+                  <FaTimes />
                 </button>
               </div>
-            ) : (
-              <div className="shop-detail__inventory-table-wrapper">
-                <table className="shop-detail__inventory-table">
-                  <thead>
-                    <tr>
-                      <th>Item</th>
-                      <th>Description</th>
-                      <th>Price (gp)</th>
-                      <th>Quantity</th>
-                      <th>Status</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {shopItems.map((shopItem) => (
-                      <tr key={shopItem.itemId} className="shop-detail__inventory-row">
-                        <td className="shop-detail__item-name">
-                          <button
-                            className="shop-detail__item-link"
-                            onClick={() => navigate(`/items/${shopItem.itemId}`)}
-                            title="View item details"
-                          >
-                            <FaEye className="shop-detail__item-view-icon" />
-                            {shopItem.item?.name}
-                          </button>
-                        </td>
-                        
-                        <td className="shop-detail__item-description">
-                          {shopItem.item?.description}
-                        </td>
-                        
-                        <td className="shop-detail__item-price">
-                          {editingItem === shopItem.itemId ? (
-                            <input
-                              type="number"
-                              value={editValues.price || 0}
-                              onChange={(e) => handleEditValueChange('price', parseFloat(e.target.value) || 0)}
-                              className="shop-detail__edit-input shop-detail__edit-input--price"
-                              min="0"
-                              step="0.01"
-                            />
-                          ) : (
-                            <span className="shop-detail__price-display">
-                              <FaCoins className="shop-detail__price-icon" />
-                              {shopItem.price}
-                            </span>
-                          )}
-                        </td>
-                        
-                        <td className="shop-detail__item-quantity">
-                          {editingItem === shopItem.itemId ? (
-                            <input
-                              type="number"
-                              value={editValues.quantity || 0}
-                              onChange={(e) => handleEditValueChange('quantity', parseInt(e.target.value) || 0)}
-                              className="shop-detail__edit-input shop-detail__edit-input--quantity"
-                              min="0"
-                            />
-                          ) : (
-                            <span>{shopItem.quantity}</span>
-                          )}
-                        </td>
-                        
-                        <td className="shop-detail__item-status">
-                          {editingItem === shopItem.itemId ? (
-                            <select
-                              value={editValues.available ? 'true' : 'false'}
-                              onChange={(e) => handleEditValueChange('available', e.target.value === 'true')}
-                              className="shop-detail__edit-select"
-                            >
-                              <option value="true">Available</option>
-                              <option value="false">Out of Stock</option>
-                            </select>
-                          ) : (
-                            <span className={`shop-detail__status-badge ${
-                              shopItem.available 
-                                ? "shop-detail__status-badge--available" 
-                                : "shop-detail__status-badge--unavailable"
-                            }`}>
-                              {shopItem.available ? "Available" : "Out of Stock"}
-                            </span>
-                          )}
-                        </td>
-                        
-                        <td className="shop-detail__item-actions">
-                          {editingItem === shopItem.itemId ? (
-                            <div className="shop-detail__edit-actions">
-                              <button
-                                className="shop-detail__save-btn"
-                                onClick={() => handleSaveEdit(shopItem.itemId)}
-                                title="Save changes"
-                              >
-                                <FaSave />
-                              </button>
-                              <button
-                                className="shop-detail__cancel-btn"
-                                onClick={handleCancelEdit}
-                                title="Cancel edit"
-                              >
-                                <FaUndo />
-                              </button>
+              
+              <div className="shop-detail__modal-content">
+                <div className="shop-detail__add-item-search">
+                  <div className="shop-detail__search-wrapper">
+                    <FaSearch className="shop-detail__search-icon" />
+                    <input
+                      type="text"
+                      placeholder="Search items by name, description, or type..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="shop-detail__search-input"
+                    />
+                  </div>
+                </div>
+
+                <div className="shop-detail__add-item-stats">
+                  <p className="shop-detail__available-count">
+                    {getFilteredItems().length} items available • {selectedItems.size} selected
+                  </p>
+                </div>
+
+                <div className="shop-detail__add-item-list">
+                  {getFilteredItems().length === 0 ? (
+                    <div className="shop-detail__no-items">
+                      <FaBox className="shop-detail__no-items-icon" />
+                      <h4>No Items Available</h4>
+                      <p>
+                        {getAvailableItems().length === 0 
+                          ? "All items from this campaign are already in the shop inventory."
+                          : "No items match your search criteria."
+                        }
+                      </p>
+                    </div>
+                  ) : (
+                    <div className="shop-detail__add-item-items-grid">
+                      {getFilteredItems().map((item) => (
+                        <button 
+                          key={item.id}
+                          className={`shop-detail__add-item-card ${
+                            selectedItems.has(item.id) ? 'shop-detail__add-item-card--selected' : ''
+                          }`}
+                          onClick={() => handleItemSelect(item.id)}
+                        >
+                          <div className="shop-detail__item-card-header">
+                            <div className="shop-detail__item-card-select">
+                              <div className={`shop-detail__checkbox ${
+                                selectedItems.has(item.id) ? 'shop-detail__checkbox--checked' : ''
+                              }`}>
+                                {selectedItems.has(item.id) && <FaCheck />}
+                              </div>
                             </div>
-                          ) : (
-                            <div className="shop-detail__view-actions">
-                              <button
-                                className="shop-detail__edit-btn-small"
-                                onClick={() => handleEditItem(shopItem.itemId, shopItem)}
-                                title="Edit item"
-                              >
-                                <FaEdit />
-                              </button>
-                              <button
-                                className="shop-detail__delete-btn-small"
-                                onClick={() => handleDeleteItem(shopItem.itemId)}
-                                title="Remove from shop"
-                              >
-                                <FaTrash />
-                              </button>
+                            <h4 className="shop-detail__item-card-name">{item.name}</h4>
+                          </div>
+                          
+                          <div className="shop-detail__item-card-content">
+                            <p className="shop-detail__item-card-description">
+                              {item.description}
+                            </p>
+                            <div className="shop-detail__item-card-meta">
+                              <span className="shop-detail__item-card-type">
+                                {item.type}
+                              </span>
+                              {item.rarity && (
+                                <span className={`shop-detail__item-card-rarity shop-detail__item-card-rarity--${item.rarity.toLowerCase()}`}>
+                                  {item.rarity}
+                                </span>
+                              )}
                             </div>
-                          )}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
-            )}
+              
+              <div className="shop-detail__modal-actions">
+                <button
+                  className="shop-detail__modal-cancel"
+                  onClick={handleCloseAddItemModal}
+                >
+                  Cancel
+                </button>
+                <button
+                  className="shop-detail__modal-add"
+                  onClick={handleAddSelectedItems}
+                  disabled={selectedItems.size === 0}
+                >
+                  <FaPlus /> Add {selectedItems.size} Item{selectedItems.size !== 1 ? 's' : ''}
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
+        )}
 
         {showDeleteModal && (
           <div className="shop-detail__modal-overlay">
