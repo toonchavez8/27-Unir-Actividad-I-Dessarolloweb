@@ -8,7 +8,7 @@ import { CampaignStats } from "@/components/campaigns/CampaignStats";
 import { CampaignNotesEditor } from "@/components/campaigns/CampaignNotesEditor";
 import { SessionsList } from "@/components/campaigns/SessionsList";
 import { QuickActions } from "@/components/campaigns/QuickActions";
-import type { Campaign } from "@/types/campaign";
+import type { Campaign } from "@/types/campaigns";
 import "@/css/CampaignDetail.css";
 
 export function CampaignDetail() {
@@ -73,7 +73,11 @@ export function CampaignDetail() {
 
   return (
     <div className="campaign-detail page-container">
-      <CampaignHeader navigate={navigate} campaignStatus={campaign.status} />
+      <CampaignHeader 
+        navigate={navigate} 
+        campaignStatus={campaign.status}
+        campaignId={campaign.id}
+      />
 
       <CampaignHero campaign={campaign} />
 

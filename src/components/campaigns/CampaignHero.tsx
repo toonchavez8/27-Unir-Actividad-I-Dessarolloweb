@@ -1,4 +1,4 @@
-import type { Campaign } from "@/types/campaign";
+import type { Campaign } from "@/types/campaigns";
 
 export interface CampaignHeroProps {
   readonly campaign: Campaign;

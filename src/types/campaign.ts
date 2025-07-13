@@ -17,6 +17,39 @@ export interface Session {
   date: Date;
   status: string;
   campaignId: string;
+  duration?: number; // in minutes
+  summary?: string;
+  notes?: string;
+  events?: SessionEvent[];
+  encounters?: Encounter[];
+}
+
+export interface SessionEvent {
+  id: string;
+  title: string;
+  description: string;
+  timestamp: Date;
+  type: "combat" | "roleplay" | "exploration" | "other";
+}
+
+export interface Encounter {
+  id: string;
+  name: string;
+  description: string;
+  monsters: Monster[];
+  difficulty: "easy" | "medium" | "hard" | "deadly";
+  environment?: string;
+  rewards?: string[];
+}
+
+export interface Monster {
+  id: string;
+  name: string;
+  hitPoints: number;
+  maxHitPoints: number;
+  armorClass: number;
+  initiative?: number;
+  conditions?: string[];
 }
 
 export interface NPC {

@@ -4,11 +4,13 @@ import type { NavigateFunction } from "react-router";
 export interface CampaignHeaderProps {
   readonly navigate: NavigateFunction;
   readonly campaignStatus: string;
+  readonly campaignId: string;
 }
 
 export function CampaignHeader({
   navigate,
   campaignStatus,
+  campaignId,
 }: CampaignHeaderProps) {
   return (
     <header className="campaign-detail__header">
@@ -21,7 +23,10 @@ export function CampaignHeader({
       </button>
 
       <nav className="campaign-detail__actions">
-        <button className="campaign-detail__action-button campaign-detail__action-button--secondary">
+        <button 
+          className="campaign-detail__action-button campaign-detail__action-button--secondary"
+          onClick={() => navigate(`/campaigns/${campaignId}/edit`)}
+        >
           <FaEdit className="campaign-detail__action-icon" />
           Edit Campaign
         </button>

@@ -8,22 +8,28 @@ export function QuickActions() {
 
   const actions = [
     {
+      id: "new-campaign",
+      icon: FaPlus,
+      label: "Create Campaign",
+      path: "/campaigns/create/new",
+    },
+    {
       id: "new-session",
       icon: FaPlus,
       label: "Plan New Session",
-      path: "/sessions/new",
+      path: "/sessions/create/new",
     },
     {
       id: "new-npc",
       icon: FaPlus,
       label: "Create NPC",
-      path: "/npcs/new",
+      path: "/npcs/create/new",
     },
     {
       id: "new-location",
       icon: FaPlus,
       label: "Add Location",
-      path: "/locations/new",
+      path: "/locations/create/new",
     },
   ];
 

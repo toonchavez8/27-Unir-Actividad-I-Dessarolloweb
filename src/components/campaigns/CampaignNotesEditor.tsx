@@ -11,7 +11,7 @@ import Editor, {
   BtnClearFormatting,
   Toolbar,
 } from "react-simple-wysiwyg";
-import type { Campaign } from "@/types/campaign";
+import type { Campaign } from "@/types/campaigns";
 
 export interface CampaignNotesEditorProps {
   readonly campaign: Campaign;

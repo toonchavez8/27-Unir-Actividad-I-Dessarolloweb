@@ -1,5 +1,6 @@
 import { FaCalendar, FaUsers } from "react-icons/fa";
 import { FaMapLocationDot, FaShop } from "react-icons/fa6";
+import { GiSwordSmithing } from "react-icons/gi";
 import type { NavigateFunction } from "react-router";
 
 export interface QuickActionsProps {
@@ -14,31 +15,39 @@ export function QuickActions({ navigate }: QuickActionsProps) {
         <div className="campaign-detail__quick-link-grid">
           <button
             className="campaign-detail__quick-link"
-            onClick={() => navigate("/sessions/new")}
+            onClick={() => navigate("/sessions/create/new")}
           >
             <FaCalendar className="campaign-detail__quick-link-icon" />
             Plan Session
           </button>
           <button
             className="campaign-detail__quick-link"
-            onClick={() => navigate("/npcs/new")}
+            onClick={() => navigate("/npcs/create/new")}
           >
             <FaUsers className="campaign-detail__quick-link-icon" />
             Add NPC
           </button>
           <button
             className="campaign-detail__quick-link"
-            onClick={() => navigate("/locations/new")}
+            onClick={() => navigate("/locations/create/new")}
           >
             <FaMapLocationDot className="campaign-detail__quick-link-icon" />
             Add Location
           </button>
           <button
             className="campaign-detail__quick-link"
-            onClick={() => navigate("/shops/new")}
+            onClick={() => navigate("/shops/create/new")}
           >
             <FaShop className="campaign-detail__quick-link-icon" />
             Add Shop
+          </button>
+
+          <button
+            className="campaign-detail__quick-link"
+            onClick={() => navigate("/items/create/new")}
+          >
+            <GiSwordSmithing className="campaign-detail__quick-link-icon" />
+            Add Item
           </button>
         </div>
       </nav>

@@ -1,0 +1,458 @@
+/* Item Form Component Styles */
+
+/* Main Container */
+.item-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 100%;
+}
+
+/* Header Section */
+.item-form__header {
+  margin-bottom: 1rem;
+}
+
+.item-form__header-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.item-form__back-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 0.375rem;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  align-self: flex-start;
+}
+
+.item-form__back-btn:hover {
+  background: var(--surface-color);
+  color: var(--text-primary);
+}
+
+.item-form__back-icon {
+  font-size: 0.75rem;
+}
+
+.item-form__title-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.item-form__title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.item-form__subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Form Layout */
+.item-form__form {
+  width: 100%;
+}
+
+.item-form__grid {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 2rem;
+}
+
+.item-form__main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.item-form__sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Card Components */
+.item-form__card {
+  background: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 4px var(--shadow-color);
+  overflow: hidden;
+}
+
+.item-form__card-header {
+  padding: 1.5rem 1.5rem 0;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 1.5rem;
+}
+
+.item-form__card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.item-form__card-icon {
+  font-size: 1rem;
+  color: var(--primary-color);
+}
+
+.item-form__card-content {
+  padding: 1.5rem;
+}
+
+/* Form Elements */
+.item-form__form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.item-form__form-group:last-child {
+  margin-bottom: 0;
+}
+
+.item-form__form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.item-form__label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.item-form__label-icon {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.item-form__input,
+.item-form__select,
+.item-form__textarea {
+  padding: 0.75rem 1rem;
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 0.375rem;
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.item-form__input:focus,
+.item-form__select:focus,
+.item-form__textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px oklch(from var(--primary-color) l c h / 0.1);
+}
+
+.item-form__input--error,
+.item-form__select--error {
+  border-color: var(--danger);
+}
+
+.item-form__textarea {
+  resize: vertical;
+  min-height: 100px;
+  font-family: inherit;
+}
+
+.item-form__error {
+  font-size: 0.75rem;
+  color: var(--danger);
+  margin-top: 0.25rem;
+}
+
+/* Properties Section */
+.item-form__property-add {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.item-form__add-property-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  flex-shrink: 0;
+}
+
+.item-form__add-property-btn:hover {
+  background: var(--primary-dark);
+}
+
+.item-form__properties-list {
+  display: flex;
+  flex-wrap: gap;
+  gap: 0.5rem;
+}
+
+.item-form__property-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  color: var(--text-primary);
+}
+
+.item-form__property-remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+  border-radius: 50%;
+  padding: 0;
+}
+
+.item-form__property-remove:hover {
+  color: var(--danger);
+}
+
+/* Image Preview */
+.item-form__image-preview {
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border-color);
+  margin-top: 1rem;
+}
+
+.item-form__preview-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Rarity Preview */
+.item-form__rarity-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: center;
+}
+
+.item-form__rarity-label {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.item-form__rarity-badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.item-form__rarity-badge--common {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.item-form__rarity-badge--uncommon {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.item-form__rarity-badge--rare {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.item-form__rarity-badge--very-rare {
+  background: #e9d5ff;
+  color: #7c3aed;
+}
+
+.item-form__rarity-badge--legendary {
+  background: #fed7aa;
+  color: #ea580c;
+}
+
+.item-form__rarity-badge--artifact {
+  background: #fecaca;
+  color: #dc2626;
+}
+
+/* Submit Button */
+.item-form__submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.item-form__submit-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.item-form__submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.item-form__submit-icon {
+  font-size: 0.75rem;
+}
+
+/* Loading State */
+.item-form__loading {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.item-form__loading-header {
+  height: 60px;
+  background: var(--surface-color);
+  border-radius: 0.5rem;
+  animation: pulse 2s infinite;
+}
+
+.item-form__loading-content {
+  height: 400px;
+  background: var(--surface-color);
+  border-radius: 0.75rem;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .item-form__grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .item-form__sidebar {
+    order: -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .item-form {
+    gap: 1.5rem;
+  }
+  
+  .item-form__header-content {
+    gap: 0.75rem;
+  }
+  
+  .item-form__title {
+    font-size: 1.75rem;
+  }
+  
+  .item-form__card-content {
+    padding: 1rem;
+  }
+  
+  .item-form__card-header {
+    padding: 1rem 1rem 0;
+    margin-bottom: 1rem;
+  }
+  
+  .item-form__form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  
+  .item-form__grid {
+    gap: 1rem;
+  }
+  
+  .item-form__sidebar {
+    gap: 1rem;
+  }
+  
+  .item-form__main-content {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .item-form__title {
+    font-size: 1.5rem;
+  }
+  
+  .item-form__subtitle {
+    font-size: 0.875rem;
+  }
+  
+  .item-form__card-content {
+    padding: 0.75rem;
+  }
+  
+  .item-form__card-header {
+    padding: 0.75rem 0.75rem 0;
+  }
+}
