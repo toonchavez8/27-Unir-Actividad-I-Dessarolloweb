@@ -1,0 +1,243 @@
+/* Dashboard Stats Component - BEM Methodology */
+.dashboard-stats {
+  width: 100%;
+}
+
+.dashboard-stats__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .dashboard-stats__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .dashboard-stats__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Card Specific Styling */
+.dashboard-stats__card {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.dashboard-stats__card:hover {
+  transform: translateY(-2px);
+}
+
+/* Card Header */
+.dashboard-stats__header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-muted);
+}
+
+.dashboard-stats__title {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.dashboard-stats__title--activity {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+/* Icons */
+.dashboard-stats__icon {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboard-stats__icon--campaigns {
+  background-color: var(--primary);
+  color: var(--bg);
+}
+
+.dashboard-stats__icon--sessions {
+  background-color: var(--success);
+  color: var(--bg);
+}
+
+.dashboard-stats__icon--npcs {
+  background-color: var(--secondary);
+  color: var(--bg);
+}
+
+.dashboard-stats__icon--locations {
+  background-color: var(--warning);
+  color: var(--bg);
+}
+
+.dashboard-stats__icon-svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.dashboard-stats__activity-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--info);
+}
+
+/* Content */
+.dashboard-stats__content {
+  padding-top: 0;
+}
+
+.dashboard-stats__value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+  margin-bottom: 0.25rem;
+}
+
+.dashboard-stats__total {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* Activity Section */
+.dashboard-stats__activity {
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .dashboard-stats__activity {
+    margin-top: 0;
+  }
+}
+
+.dashboard-stats__activity-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+@media (max-width: 640px) {
+  .dashboard-stats__activity-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
+
+.dashboard-stats__playtime {
+  flex: 1;
+}
+
+.dashboard-stats__playtime-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.25rem 0;
+  line-height: 1.2;
+}
+
+.dashboard-stats__playtime-label {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.dashboard-stats__upcoming {
+  text-align: right;
+}
+
+@media (max-width: 640px) {
+  .dashboard-stats__upcoming {
+    text-align: left;
+    align-self: stretch;
+  }
+}
+
+/* Badge */
+.dashboard-stats__badge {
+  display: inline-block;
+  padding: 0.375rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  transition: all 0.2s ease;
+}
+
+.dashboard-stats__badge--active {
+  background-color: var(--primary);
+  color: var(--bg);
+}
+
+.dashboard-stats__badge--inactive {
+  background-color: var(--text-muted);
+  color: var(--bg);
+}
+
+/* Hover Effects */
+.dashboard-stats__card--campaigns:hover .dashboard-stats__icon--campaigns {
+  background-color: var(--primary);
+  filter: brightness(1.1);
+}
+
+.dashboard-stats__card--sessions:hover .dashboard-stats__icon--sessions {
+  background-color: var(--success);
+  filter: brightness(1.1);
+}
+
+.dashboard-stats__card--npcs:hover .dashboard-stats__icon--npcs {
+  background-color: var(--secondary);
+  filter: brightness(1.1);
+}
+
+.dashboard-stats__card--locations:hover .dashboard-stats__icon--locations {
+  background-color: var(--warning);
+  filter: brightness(1.1);
+}
+
+/* Animation for value changes *
+/* Loading State (optional) */
+.dashboard-stats--loading .dashboard-stats__value {
+  color: var(--text-muted);
+  transition: none;
+}
+
+/* Focus States */
+.dashboard-stats__card:focus-within {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+  .dashboard-stats__card {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid var(--border-color);
+  }
+
+  .dashboard-stats__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

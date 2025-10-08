@@ -1,0 +1,319 @@
+/* SessionForm Styles */
+.session-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 100%;
+}
+
+/* Header */
+.session-form__header {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.session-form__back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  align-self: flex-start;
+}
+
+.session-form__back-button:hover {
+  background: var(--card-hover);
+  color: var(--text-primary);
+  border-color: var(--primary-color);
+}
+
+.session-form__back-icon {
+  font-size: 0.75rem;
+}
+
+.session-form__title-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.session-form__title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.session-form__description {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Form Layout */
+.session-form__form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.session-form__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.session-form__main {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.session-form__sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Card */
+.session-form__card {
+  background: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.session-form__card-header {
+  padding: 1.5rem 1.5rem 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.session-form__card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.session-form__card-icon {
+  color: #10b981; /* Emerald green for sessions */
+  font-size: 1rem;
+}
+
+.session-form__card-content {
+  padding: 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+/* Form Fields */
+.session-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.session-form__field-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.session-form__label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.session-form__input,
+.session-form__select,
+.session-form__textarea {
+  padding: 0.75rem;
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  transition: all 0.2s ease-in-out;
+  font-family: inherit;
+}
+
+.session-form__input:focus,
+.session-form__select:focus,
+.session-form__textarea:focus {
+  outline: none;
+  border-color: #10b981; /* Emerald green for sessions */
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+.session-form__input::placeholder,
+.session-form__textarea::placeholder {
+  color: var(--text-secondary);
+}
+
+.session-form__textarea {
+  resize: vertical;
+  min-height: 3rem;
+}
+
+.session-form__select {
+  cursor: pointer;
+}
+
+.session-form__input--error,
+.session-form__select--error,
+.session-form__textarea--error {
+  border-color: var(--danger);
+}
+
+.session-form__error {
+  font-size: 0.75rem;
+  color: var(--danger);
+  margin-top: 0.25rem;
+}
+
+/* Submit Button */
+.session-form__submit-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #10b981, #059669); /* Emerald gradient */
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2);
+}
+
+/* Submit Button Container */
+.session-form__submit-container {
+  justify-self: self-start;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.session-form__submit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+  background: linear-gradient(135deg, #059669, #047857);
+}
+
+.session-form__submit-button:active {
+  transform: translateY(0);
+}
+
+.session-form__submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.session-form__submit-icon {
+  font-size: 0.875rem;
+}
+
+/* Campaign Info */
+.session-form__campaign-info {
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  padding: 0.75rem;
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  margin: 0;
+}
+
+/* Loading State */
+.session-form__loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  gap: 1rem;
+}
+
+.session-form__loading-title {
+  height: 2rem;
+  width: 12rem;
+  background: var(--border);
+  border-radius: 0.5rem;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.session-form__loading-description {
+  height: 1rem;
+  width: 20rem;
+  background: var(--border);
+  border-radius: 0.5rem;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Responsive Design */
+@media (min-width: 1024px) {
+  .session-form__grid {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .session-form__title {
+    font-size: 1.75rem;
+  }
+
+  .session-form__field-group {
+    grid-template-columns: 1fr;
+  }
+
+  .session-form__card-content {
+    padding: 1.5rem 1rem;
+  }
+
+  .session-form__card-header {
+    padding: 1rem 1rem 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .session-form {
+    gap: 1.5rem;
+  }
+
+  .session-form__title {
+    font-size: 1.5rem;
+  }
+
+  .session-form__card-content {
+    gap: 1rem;
+  }
+}

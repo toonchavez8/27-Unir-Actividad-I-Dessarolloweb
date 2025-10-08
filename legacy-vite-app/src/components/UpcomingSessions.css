@@ -1,0 +1,49 @@
+/* UpcomingSessions Component Styles */
+.upcoming-sessions {
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Override session-item for button element */
+.upcoming-sessions .session-item {
+  width: 100%;
+  text-align: left;
+  border: 1px solid var(--border-muted);
+  background-color: var(--surface-color);
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.upcoming-sessions .session-item:hover {
+  background-color: var(--card-hover);
+  border-color: var(--border-color);
+}
+
+.upcoming-sessions .session-item:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.upcoming-sessions .session-item:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px var(--shadow-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .upcoming-sessions {
+    max-width: 100%;
+  }
+
+  .upcoming-sessions .session-item {
+    padding: 0.625rem;
+  }
+
+  .upcoming-sessions .session-item__title {
+    font-size: 0.8125rem;
+  }
+
+  .upcoming-sessions .session-item__meta {
+    font-size: 0.6875rem;
+  }
+}

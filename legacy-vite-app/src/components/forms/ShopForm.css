@@ -1,0 +1,422 @@
+/* Shop Form Styles */
+
+/* Main Container */
+.shop-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 100%;
+}
+
+/* Header Section */
+.shop-form__header {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.shop-form__back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 0.375rem;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  align-self: flex-start;
+}
+
+.shop-form__back-btn:hover {
+  background: var(--surface-color);
+  color: var(--text-primary);
+}
+
+.shop-form__back-icon {
+  font-size: 0.75rem;
+}
+
+.shop-form__title-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.shop-form__title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.shop-form__description {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Form Layout */
+.shop-form__form {
+  width: 100%;
+}
+
+.shop-form__layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 2rem;
+}
+
+.shop-form__main {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.shop-form__sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Card Styles */
+.shop-form__card {
+  background: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 4px var(--shadow-color);
+  overflow: hidden;
+}
+
+.shop-form__card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.shop-form__card-icon {
+  color: var(--primary-color);
+  font-size: 1.25rem;
+}
+
+.shop-form__card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.shop-form__card-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Form Fields */
+.shop-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.shop-form__field-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.shop-form__label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.shop-form__required {
+  color: var(--danger);
+}
+
+.shop-form__input,
+.shop-form__select,
+.shop-form__textarea {
+  padding: 0.75rem;
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 0.375rem;
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.shop-form__input:focus,
+.shop-form__select:focus,
+.shop-form__textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px oklch(from var(--primary-color) l c h / 0.1);
+}
+
+.shop-form__input::placeholder,
+.shop-form__textarea::placeholder {
+  color: var(--text-secondary);
+}
+
+.shop-form__textarea {
+  resize: vertical;
+  min-height: 100px;
+  font-family: inherit;
+  line-height: 1.5;
+}
+
+.shop-form__select {
+  cursor: pointer;
+}
+
+.shop-form__select:disabled {
+  background: var(--border-color);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Error States */
+.shop-form__input--error,
+.shop-form__select--error {
+  border-color: var(--danger);
+}
+
+.shop-form__error {
+  font-size: 0.75rem;
+  color: var(--danger);
+  margin-top: 0.25rem;
+}
+
+.shop-form__help {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* Image Preview */
+.shop-form__image-preview {
+  width: 100%;
+  height: 200px;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background: var(--surface-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shop-form__preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.shop-form__image-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.shop-form__image-error-icon {
+  font-size: 1.5rem;
+}
+
+/* Actions */
+.shop-form__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  background: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.shop-form__submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.shop-form__submit-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.shop-form__submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.shop-form__submit-icon {
+  font-size: 0.875rem;
+}
+
+.shop-form__cancel-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.shop-form__cancel-btn:hover:not(:disabled) {
+  background: var(--surface-color);
+}
+
+.shop-form__cancel-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.shop-form__cancel-icon {
+  font-size: 0.875rem;
+}
+
+/* Loading States */
+.shop-form--loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.shop-form__loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  color: var(--text-secondary);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .shop-form__layout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .shop-form__header {
+    gap: 0.75rem;
+  }
+
+  .shop-form__title {
+    font-size: 1.75rem;
+  }
+
+  .shop-form__card-header {
+    padding: 1rem;
+  }
+
+  .shop-form__card-content {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .shop-form__actions {
+    padding: 1rem;
+  }
+
+  .shop-form__field-group {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .shop-form__image-preview {
+    height: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .shop-form__title {
+    font-size: 1.5rem;
+  }
+
+  .shop-form__card-header {
+    padding: 0.75rem;
+  }
+
+  .shop-form__card-content {
+    padding: 0.75rem;
+  }
+
+  .shop-form__actions {
+    padding: 0.75rem;
+  }
+
+  .shop-form__submit-btn,
+  .shop-form__cancel-btn {
+    padding: 0.625rem 1rem;
+    font-size: 0.8125rem;
+  }
+}
+
+/* Focus and accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .shop-form__input,
+  .shop-form__select,
+  .shop-form__textarea,
+  .shop-form__submit-btn,
+  .shop-form__cancel-btn,
+  .shop-form__back-btn {
+    transition: none;
+  }
+
+  .shop-form__submit-btn:hover:not(:disabled) {
+    transform: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .shop-form__card,
+  .shop-form__actions {
+    border-width: 2px;
+  }
+
+  .shop-form__input,
+  .shop-form__select,
+  .shop-form__textarea {
+    border-width: 2px;
+  }
+
+  .shop-form__input--error,
+  .shop-form__select--error {
+    border-width: 3px;
+  }
+}
