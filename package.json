@@ -2,6 +2,7 @@
 	"name": "dm-monorepo",
 	"private": true,
 	"version": "0.1.0",
+	"packageManager": "npm@10.9.0",
 	"workspaces": [
 		"legacy-vite-app",
 		"next-app"
@@ -15,6 +16,6 @@
 		"clean": "turbo run clean"
 	},
 	"devDependencies": {
-		"turbo": "^2.3.3"
+		"turbo": "^2.5.8"
 	}
 }
