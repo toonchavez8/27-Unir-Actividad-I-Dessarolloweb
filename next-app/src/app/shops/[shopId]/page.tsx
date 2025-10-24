@@ -6,7 +6,7 @@ type PageProps = {
 	};
 };
 
-export default function ShopDetailPage({ params }: PageProps) {
+export default function ShopDetailPage({ params }: Readonly<PageProps>) {
 	return (
 		<RoutePlaceholder
 			title="Shop Detail"

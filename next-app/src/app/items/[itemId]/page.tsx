@@ -6,7 +6,7 @@ type PageProps = {
 	};
 };
 
-export default function ItemDetailPage({ params }: PageProps) {
+export default function ItemDetailPage({ params }: Readonly<PageProps>) {
 	return (
 		<RoutePlaceholder
 			title="Item Detail"

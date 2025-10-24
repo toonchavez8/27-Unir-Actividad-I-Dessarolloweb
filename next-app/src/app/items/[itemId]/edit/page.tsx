@@ -6,7 +6,7 @@ type PageProps = {
 	};
 };
 
-export default function EditItemPage({ params }: PageProps) {
+export default function EditItemPage({ params }: Readonly<PageProps>) {
 	return (
 		<RoutePlaceholder
 			title="Edit Item"

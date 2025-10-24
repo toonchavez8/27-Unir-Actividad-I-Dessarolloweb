@@ -6,7 +6,7 @@ type PageProps = {
 	};
 };
 
-export default function CampaignDetailPage({ params }: PageProps) {
+export default function CampaignDetailPage({ params }: Readonly<PageProps>) {
 	return (
 		<RoutePlaceholder
 			title="Campaign Detail"

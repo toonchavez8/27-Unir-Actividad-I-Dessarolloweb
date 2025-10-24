@@ -6,7 +6,7 @@ type PageProps = {
 	};
 };
 
-export default function LocationDetailPage({ params }: PageProps) {
+export default function LocationDetailPage({ params }: Readonly<PageProps>) {
 	return (
 		<RoutePlaceholder
 			title="Location Detail"

@@ -6,7 +6,7 @@ type PageProps = {
 	};
 };
 
-export default function CampaignNewNpcPage({ params }: PageProps) {
+export default function CampaignNewNpcPage({ params }: Readonly<PageProps>) {
 	return (
 		<RoutePlaceholder
 			title="Create Campaign NPC"

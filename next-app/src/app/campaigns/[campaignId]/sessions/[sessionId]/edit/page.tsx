@@ -7,7 +7,9 @@ type PageProps = {
 	};
 };
 
-export default function EditCampaignSessionPage({ params }: PageProps) {
+export default function EditCampaignSessionPage({
+	params,
+}: Readonly<PageProps>) {
 	return (
 		<RoutePlaceholder
 			title="Edit Campaign Session"

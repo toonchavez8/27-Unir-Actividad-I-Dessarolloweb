@@ -6,7 +6,7 @@ type PageProps = {
 	};
 };
 
-export default function SessionRunnerPage({ params }: PageProps) {
+export default function SessionRunnerPage({ params }: Readonly<PageProps>) {
 	return (
 		<RoutePlaceholder
 			title="Session Runner"

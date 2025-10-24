@@ -6,7 +6,7 @@ type PageProps = {
 	};
 };
 
-export default function CampaignNewItemPage({ params }: PageProps) {
+export default function CampaignNewItemPage({ params }: Readonly<PageProps>) {
 	return (
 		<RoutePlaceholder
 			title="Create Campaign Item"

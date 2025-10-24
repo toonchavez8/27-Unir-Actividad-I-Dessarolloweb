@@ -6,7 +6,7 @@ type PageProps = {
 	};
 };
 
-export default function CampaignNewShopPage({ params }: PageProps) {
+export default function CampaignNewShopPage({ params }: Readonly<PageProps>) {
 	return (
 		<RoutePlaceholder
 			title="Create Campaign Shop"
